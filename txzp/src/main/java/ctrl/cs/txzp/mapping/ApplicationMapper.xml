@@ -5,12 +5,20 @@
     <id column="app_id" property="appId" jdbcType="INTEGER" />
     <result column="app_userid" property="appUserid" jdbcType="INTEGER" />
     <result column="app_name" property="appName" jdbcType="VARCHAR" />
+    <result column="app_tel" property="appTel" jdbcType="VARCHAR" />
+    <result column="app_QQ" property="appQq" jdbcType="VARCHAR" />
+    <result column="app_stunum" property="appStunum" jdbcType="INTEGER" />
     <result column="app_apartmenid" property="appApartmenid" jdbcType="INTEGER" />
     <result column="app_time" property="appTime" jdbcType="DATE" />
     <result column="app_state" property="appState" jdbcType="INTEGER" />
+    <result column="app_className" property="appClassname" jdbcType="VARCHAR" />
+    <result column="app_sex" property="appSex" jdbcType="VARCHAR" />
+    <result column="app_good" property="appGood" jdbcType="VARCHAR" />
+    <result column="app_like" property="appLike" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    app_id, app_userid, app_name, app_apartmenid, app_time, app_state
+    app_id, app_userid, app_name, app_tel, app_QQ, app_stunum, app_apartmenid, app_time, 
+    app_state, app_className, app_sex, app_good, app_like
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -24,11 +32,15 @@
   </delete>
   <insert id="insert" parameterType="ctrl.cs.txzp.modal.Application" >
     insert into application (app_id, app_userid, app_name, 
-      app_apartmenid, app_time, app_state
-      )
+      app_tel, app_QQ, app_stunum, 
+      app_apartmenid, app_time, app_state, 
+      app_className, app_sex, app_good, 
+      app_like)
     values (#{appId,jdbcType=INTEGER}, #{appUserid,jdbcType=INTEGER}, #{appName,jdbcType=VARCHAR}, 
-      #{appApartmenid,jdbcType=INTEGER}, #{appTime,jdbcType=DATE}, #{appState,jdbcType=INTEGER}
-      )
+      #{appTel,jdbcType=VARCHAR}, #{appQq,jdbcType=VARCHAR}, #{appStunum,jdbcType=INTEGER}, 
+      #{appApartmenid,jdbcType=INTEGER}, #{appTime,jdbcType=DATE}, #{appState,jdbcType=INTEGER}, 
+      #{appClassname,jdbcType=VARCHAR}, #{appSex,jdbcType=VARCHAR}, #{appGood,jdbcType=VARCHAR}, 
+      #{appLike,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="ctrl.cs.txzp.modal.Application" >
     insert into application
@@ -42,6 +54,15 @@
       <if test="appName != null" >
         app_name,
       </if>
+      <if test="appTel != null" >
+        app_tel,
+      </if>
+      <if test="appQq != null" >
+        app_QQ,
+      </if>
+      <if test="appStunum != null" >
+        app_stunum,
+      </if>
       <if test="appApartmenid != null" >
         app_apartmenid,
       </if>
@@ -50,6 +71,18 @@
       </if>
       <if test="appState != null" >
         app_state,
+      </if>
+      <if test="appClassname != null" >
+        app_className,
+      </if>
+      <if test="appSex != null" >
+        app_sex,
+      </if>
+      <if test="appGood != null" >
+        app_good,
+      </if>
+      <if test="appLike != null" >
+        app_like,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -62,6 +95,15 @@
       <if test="appName != null" >
         #{appName,jdbcType=VARCHAR},
       </if>
+      <if test="appTel != null" >
+        #{appTel,jdbcType=VARCHAR},
+      </if>
+      <if test="appQq != null" >
+        #{appQq,jdbcType=VARCHAR},
+      </if>
+      <if test="appStunum != null" >
+        #{appStunum,jdbcType=INTEGER},
+      </if>
       <if test="appApartmenid != null" >
         #{appApartmenid,jdbcType=INTEGER},
       </if>
@@ -70,6 +112,18 @@
       </if>
       <if test="appState != null" >
         #{appState,jdbcType=INTEGER},
+      </if>
+      <if test="appClassname != null" >
+        #{appClassname,jdbcType=VARCHAR},
+      </if>
+      <if test="appSex != null" >
+        #{appSex,jdbcType=VARCHAR},
+      </if>
+      <if test="appGood != null" >
+        #{appGood,jdbcType=VARCHAR},
+      </if>
+      <if test="appLike != null" >
+        #{appLike,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -82,6 +136,15 @@
       <if test="appName != null" >
         app_name = #{appName,jdbcType=VARCHAR},
       </if>
+      <if test="appTel != null" >
+        app_tel = #{appTel,jdbcType=VARCHAR},
+      </if>
+      <if test="appQq != null" >
+        app_QQ = #{appQq,jdbcType=VARCHAR},
+      </if>
+      <if test="appStunum != null" >
+        app_stunum = #{appStunum,jdbcType=INTEGER},
+      </if>
       <if test="appApartmenid != null" >
         app_apartmenid = #{appApartmenid,jdbcType=INTEGER},
       </if>
@@ -91,6 +154,18 @@
       <if test="appState != null" >
         app_state = #{appState,jdbcType=INTEGER},
       </if>
+      <if test="appClassname != null" >
+        app_className = #{appClassname,jdbcType=VARCHAR},
+      </if>
+      <if test="appSex != null" >
+        app_sex = #{appSex,jdbcType=VARCHAR},
+      </if>
+      <if test="appGood != null" >
+        app_good = #{appGood,jdbcType=VARCHAR},
+      </if>
+      <if test="appLike != null" >
+        app_like = #{appLike,jdbcType=VARCHAR},
+      </if>
     </set>
     where app_id = #{appId,jdbcType=INTEGER}
   </update>
@@ -98,9 +173,16 @@
     update application
     set app_userid = #{appUserid,jdbcType=INTEGER},
       app_name = #{appName,jdbcType=VARCHAR},
+      app_tel = #{appTel,jdbcType=VARCHAR},
+      app_QQ = #{appQq,jdbcType=VARCHAR},
+      app_stunum = #{appStunum,jdbcType=INTEGER},
       app_apartmenid = #{appApartmenid,jdbcType=INTEGER},
       app_time = #{appTime,jdbcType=DATE},
-      app_state = #{appState,jdbcType=INTEGER}
+      app_state = #{appState,jdbcType=INTEGER},
+      app_className = #{appClassname,jdbcType=VARCHAR},
+      app_sex = #{appSex,jdbcType=VARCHAR},
+      app_good = #{appGood,jdbcType=VARCHAR},
+      app_like = #{appLike,jdbcType=VARCHAR}
     where app_id = #{appId,jdbcType=INTEGER}
   </update>
 </mapper>

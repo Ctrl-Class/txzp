@@ -13,6 +13,16 @@ public class UserInfo {
 
     private Integer infoNote;
 
+    private String infoUsername;
+
+    private String infoClassname;
+
+    private String infoLike;
+
+    private String infoSex;
+
+    private String infoGood;
+
     private String infoBasicinfo;
 
     public Integer getInfoId() {
@@ -61,6 +71,46 @@ public class UserInfo {
 
     public void setInfoNote(Integer infoNote) {
         this.infoNote = infoNote;
+    }
+
+    public String getInfoUsername() {
+        return infoUsername;
+    }
+
+    public void setInfoUsername(String infoUsername) {
+        this.infoUsername = infoUsername;
+    }
+
+    public String getInfoClassname() {
+        return infoClassname;
+    }
+
+    public void setInfoClassname(String infoClassname) {
+        this.infoClassname = infoClassname;
+    }
+
+    public String getInfoLike() {
+        return infoLike;
+    }
+
+    public void setInfoLike(String infoLike) {
+        this.infoLike = infoLike;
+    }
+
+    public String getInfoSex() {
+        return infoSex;
+    }
+
+    public void setInfoSex(String infoSex) {
+        this.infoSex = infoSex;
+    }
+
+    public String getInfoGood() {
+        return infoGood;
+    }
+
+    public void setInfoGood(String infoGood) {
+        this.infoGood = infoGood;
     }
 
     public String getInfoBasicinfo() {

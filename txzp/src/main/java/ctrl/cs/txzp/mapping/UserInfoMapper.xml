@@ -8,12 +8,18 @@
     <result column="info_QQ" property="infoQq" jdbcType="INTEGER" />
     <result column="info_stunum" property="infoStunum" jdbcType="INTEGER" />
     <result column="info_note" property="infoNote" jdbcType="INTEGER" />
+    <result column="info_username" property="infoUsername" jdbcType="VARCHAR" />
+    <result column="info_className" property="infoClassname" jdbcType="VARCHAR" />
+    <result column="info_like" property="infoLike" jdbcType="VARCHAR" />
+    <result column="info_sex" property="infoSex" jdbcType="VARCHAR" />
+    <result column="info_good" property="infoGood" jdbcType="VARCHAR" />
   </resultMap>
   <resultMap id="ResultMapWithBLOBs" type="ctrl.cs.txzp.modal.UserInfo" extends="BaseResultMap" >
     <result column="info_basicinfo" property="infoBasicinfo" jdbcType="LONGVARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    info_id, info_userid, info_tel, info_QQ, info_stunum, info_note
+    info_id, info_userid, info_tel, info_QQ, info_stunum, info_note, info_username, info_className, 
+    info_like, info_sex, info_good
   </sql>
   <sql id="Blob_Column_List" >
     info_basicinfo
@@ -33,10 +39,14 @@
   <insert id="insert" parameterType="ctrl.cs.txzp.modal.UserInfo" >
     insert into userinfo (info_id, info_userid, info_tel, 
       info_QQ, info_stunum, info_note, 
-      info_basicinfo)
+      info_username, info_className, info_like, 
+      info_sex, info_good, info_basicinfo
+      )
     values (#{infoId,jdbcType=INTEGER}, #{infoUserid,jdbcType=INTEGER}, #{infoTel,jdbcType=INTEGER}, 
       #{infoQq,jdbcType=INTEGER}, #{infoStunum,jdbcType=INTEGER}, #{infoNote,jdbcType=INTEGER}, 
-      #{infoBasicinfo,jdbcType=LONGVARCHAR})
+      #{infoUsername,jdbcType=VARCHAR}, #{infoClassname,jdbcType=VARCHAR}, #{infoLike,jdbcType=VARCHAR}, 
+      #{infoSex,jdbcType=VARCHAR}, #{infoGood,jdbcType=VARCHAR}, #{infoBasicinfo,jdbcType=LONGVARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="ctrl.cs.txzp.modal.UserInfo" >
     insert into userinfo
@@ -58,6 +68,21 @@
       </if>
       <if test="infoNote != null" >
         info_note,
+      </if>
+      <if test="infoUsername != null" >
+        info_username,
+      </if>
+      <if test="infoClassname != null" >
+        info_className,
+      </if>
+      <if test="infoLike != null" >
+        info_like,
+      </if>
+      <if test="infoSex != null" >
+        info_sex,
+      </if>
+      <if test="infoGood != null" >
+        info_good,
       </if>
       <if test="infoBasicinfo != null" >
         info_basicinfo,
@@ -82,6 +107,21 @@
       <if test="infoNote != null" >
         #{infoNote,jdbcType=INTEGER},
       </if>
+      <if test="infoUsername != null" >
+        #{infoUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="infoClassname != null" >
+        #{infoClassname,jdbcType=VARCHAR},
+      </if>
+      <if test="infoLike != null" >
+        #{infoLike,jdbcType=VARCHAR},
+      </if>
+      <if test="infoSex != null" >
+        #{infoSex,jdbcType=VARCHAR},
+      </if>
+      <if test="infoGood != null" >
+        #{infoGood,jdbcType=VARCHAR},
+      </if>
       <if test="infoBasicinfo != null" >
         #{infoBasicinfo,jdbcType=LONGVARCHAR},
       </if>
@@ -105,6 +145,21 @@
       <if test="infoNote != null" >
         info_note = #{infoNote,jdbcType=INTEGER},
       </if>
+      <if test="infoUsername != null" >
+        info_username = #{infoUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="infoClassname != null" >
+        info_className = #{infoClassname,jdbcType=VARCHAR},
+      </if>
+      <if test="infoLike != null" >
+        info_like = #{infoLike,jdbcType=VARCHAR},
+      </if>
+      <if test="infoSex != null" >
+        info_sex = #{infoSex,jdbcType=VARCHAR},
+      </if>
+      <if test="infoGood != null" >
+        info_good = #{infoGood,jdbcType=VARCHAR},
+      </if>
       <if test="infoBasicinfo != null" >
         info_basicinfo = #{infoBasicinfo,jdbcType=LONGVARCHAR},
       </if>
@@ -118,6 +173,11 @@
       info_QQ = #{infoQq,jdbcType=INTEGER},
       info_stunum = #{infoStunum,jdbcType=INTEGER},
       info_note = #{infoNote,jdbcType=INTEGER},
+      info_username = #{infoUsername,jdbcType=VARCHAR},
+      info_className = #{infoClassname,jdbcType=VARCHAR},
+      info_like = #{infoLike,jdbcType=VARCHAR},
+      info_sex = #{infoSex,jdbcType=VARCHAR},
+      info_good = #{infoGood,jdbcType=VARCHAR},
       info_basicinfo = #{infoBasicinfo,jdbcType=LONGVARCHAR}
     where info_id = #{infoId,jdbcType=INTEGER}
   </update>
@@ -127,7 +187,12 @@
       info_tel = #{infoTel,jdbcType=INTEGER},
       info_QQ = #{infoQq,jdbcType=INTEGER},
       info_stunum = #{infoStunum,jdbcType=INTEGER},
-      info_note = #{infoNote,jdbcType=INTEGER}
+      info_note = #{infoNote,jdbcType=INTEGER},
+      info_username = #{infoUsername,jdbcType=VARCHAR},
+      info_className = #{infoClassname,jdbcType=VARCHAR},
+      info_like = #{infoLike,jdbcType=VARCHAR},
+      info_sex = #{infoSex,jdbcType=VARCHAR},
+      info_good = #{infoGood,jdbcType=VARCHAR}
     where info_id = #{infoId,jdbcType=INTEGER}
   </update>
 </mapper>

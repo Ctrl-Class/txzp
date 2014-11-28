@@ -4,13 +4,15 @@
   <resultMap id="BaseResultMap" type="ctrl.cs.txzp.modal.Apartment" >
     <id column="apart_id" property="apartId" jdbcType="INTEGER" />
     <result column="apart_name" property="apartName" jdbcType="VARCHAR" />
+    <result column="apart_require" property="apartRequire" jdbcType="VARCHAR" />
     <result column="apart_manager_userid" property="apartManagerUserid" jdbcType="INTEGER" />
+    <result column="apart_deadline" property="apartDeadline" jdbcType="DATE" />
   </resultMap>
   <resultMap id="ResultMapWithBLOBs" type="ctrl.cs.txzp.modal.Apartment" extends="BaseResultMap" >
     <result column="apart_info" property="apartInfo" jdbcType="LONGVARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    apart_id, apart_name, apart_manager_userid
+    apart_id, apart_name, apart_require, apart_manager_userid, apart_deadline
   </sql>
   <sql id="Blob_Column_List" >
     apart_info
@@ -28,10 +30,12 @@
     where apart_id = #{apartId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="ctrl.cs.txzp.modal.Apartment" >
-    insert into apartment (apart_id, apart_name, apart_manager_userid, 
-      apart_info)
-    values (#{apartId,jdbcType=INTEGER}, #{apartName,jdbcType=VARCHAR}, #{apartManagerUserid,jdbcType=INTEGER}, 
-      #{apartInfo,jdbcType=LONGVARCHAR})
+    insert into apartment (apart_id, apart_name, apart_require, 
+      apart_manager_userid, apart_deadline, apart_info
+      )
+    values (#{apartId,jdbcType=INTEGER}, #{apartName,jdbcType=VARCHAR}, #{apartRequire,jdbcType=VARCHAR}, 
+      #{apartManagerUserid,jdbcType=INTEGER}, #{apartDeadline,jdbcType=DATE}, #{apartInfo,jdbcType=LONGVARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="ctrl.cs.txzp.modal.Apartment" >
     insert into apartment
@@ -42,8 +46,14 @@
       <if test="apartName != null" >
         apart_name,
       </if>
+      <if test="apartRequire != null" >
+        apart_require,
+      </if>
       <if test="apartManagerUserid != null" >
         apart_manager_userid,
+      </if>
+      <if test="apartDeadline != null" >
+        apart_deadline,
       </if>
       <if test="apartInfo != null" >
         apart_info,
@@ -56,8 +66,14 @@
       <if test="apartName != null" >
         #{apartName,jdbcType=VARCHAR},
       </if>
+      <if test="apartRequire != null" >
+        #{apartRequire,jdbcType=VARCHAR},
+      </if>
       <if test="apartManagerUserid != null" >
         #{apartManagerUserid,jdbcType=INTEGER},
+      </if>
+      <if test="apartDeadline != null" >
+        #{apartDeadline,jdbcType=DATE},
       </if>
       <if test="apartInfo != null" >
         #{apartInfo,jdbcType=LONGVARCHAR},
@@ -70,8 +86,14 @@
       <if test="apartName != null" >
         apart_name = #{apartName,jdbcType=VARCHAR},
       </if>
+      <if test="apartRequire != null" >
+        apart_require = #{apartRequire,jdbcType=VARCHAR},
+      </if>
       <if test="apartManagerUserid != null" >
         apart_manager_userid = #{apartManagerUserid,jdbcType=INTEGER},
+      </if>
+      <if test="apartDeadline != null" >
+        apart_deadline = #{apartDeadline,jdbcType=DATE},
       </if>
       <if test="apartInfo != null" >
         apart_info = #{apartInfo,jdbcType=LONGVARCHAR},
@@ -82,14 +104,18 @@
   <update id="updateByPrimaryKeyWithBLOBs" parameterType="ctrl.cs.txzp.modal.Apartment" >
     update apartment
     set apart_name = #{apartName,jdbcType=VARCHAR},
+      apart_require = #{apartRequire,jdbcType=VARCHAR},
       apart_manager_userid = #{apartManagerUserid,jdbcType=INTEGER},
+      apart_deadline = #{apartDeadline,jdbcType=DATE},
       apart_info = #{apartInfo,jdbcType=LONGVARCHAR}
     where apart_id = #{apartId,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="ctrl.cs.txzp.modal.Apartment" >
     update apartment
     set apart_name = #{apartName,jdbcType=VARCHAR},
-      apart_manager_userid = #{apartManagerUserid,jdbcType=INTEGER}
+      apart_require = #{apartRequire,jdbcType=VARCHAR},
+      apart_manager_userid = #{apartManagerUserid,jdbcType=INTEGER},
+      apart_deadline = #{apartDeadline,jdbcType=DATE}
     where apart_id = #{apartId,jdbcType=INTEGER}
   </update>
 </mapper>
