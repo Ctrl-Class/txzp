@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="ctrl.cs.txzp.dao.UserInfoMapper" >
+  <resultMap id="BaseResultMap" type="ctrl.cs.txzp.modal.UserInfo" >
+    <id column="info_id" property="infoId" jdbcType="INTEGER" />
+    <result column="info_userid" property="infoUserid" jdbcType="INTEGER" />
+    <result column="info_tel" property="infoTel" jdbcType="INTEGER" />
+    <result column="info_QQ" property="infoQq" jdbcType="INTEGER" />
+    <result column="info_stunum" property="infoStunum" jdbcType="INTEGER" />
+    <result column="info_note" property="infoNote" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="ctrl.cs.txzp.modal.UserInfo" extends="BaseResultMap" >
+    <result column="info_basicinfo" property="infoBasicinfo" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    info_id, info_userid, info_tel, info_QQ, info_stunum, info_note
+  </sql>
+  <sql id="Blob_Column_List" >
+    info_basicinfo
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from userinfo
+    where info_id = #{infoId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from userinfo
+    where info_id = #{infoId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="ctrl.cs.txzp.modal.UserInfo" >
+    insert into userinfo (info_id, info_userid, info_tel, 
+      info_QQ, info_stunum, info_note, 
+      info_basicinfo)
+    values (#{infoId,jdbcType=INTEGER}, #{infoUserid,jdbcType=INTEGER}, #{infoTel,jdbcType=INTEGER}, 
+      #{infoQq,jdbcType=INTEGER}, #{infoStunum,jdbcType=INTEGER}, #{infoNote,jdbcType=INTEGER}, 
+      #{infoBasicinfo,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="ctrl.cs.txzp.modal.UserInfo" >
+    insert into userinfo
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="infoId != null" >
+        info_id,
+      </if>
+      <if test="infoUserid != null" >
+        info_userid,
+      </if>
+      <if test="infoTel != null" >
+        info_tel,
+      </if>
+      <if test="infoQq != null" >
+        info_QQ,
+      </if>
+      <if test="infoStunum != null" >
+        info_stunum,
+      </if>
+      <if test="infoNote != null" >
+        info_note,
+      </if>
+      <if test="infoBasicinfo != null" >
+        info_basicinfo,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="infoId != null" >
+        #{infoId,jdbcType=INTEGER},
+      </if>
+      <if test="infoUserid != null" >
+        #{infoUserid,jdbcType=INTEGER},
+      </if>
+      <if test="infoTel != null" >
+        #{infoTel,jdbcType=INTEGER},
+      </if>
+      <if test="infoQq != null" >
+        #{infoQq,jdbcType=INTEGER},
+      </if>
+      <if test="infoStunum != null" >
+        #{infoStunum,jdbcType=INTEGER},
+      </if>
+      <if test="infoNote != null" >
+        #{infoNote,jdbcType=INTEGER},
+      </if>
+      <if test="infoBasicinfo != null" >
+        #{infoBasicinfo,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="ctrl.cs.txzp.modal.UserInfo" >
+    update userinfo
+    <set >
+      <if test="infoUserid != null" >
+        info_userid = #{infoUserid,jdbcType=INTEGER},
+      </if>
+      <if test="infoTel != null" >
+        info_tel = #{infoTel,jdbcType=INTEGER},
+      </if>
+      <if test="infoQq != null" >
+        info_QQ = #{infoQq,jdbcType=INTEGER},
+      </if>
+      <if test="infoStunum != null" >
+        info_stunum = #{infoStunum,jdbcType=INTEGER},
+      </if>
+      <if test="infoNote != null" >
+        info_note = #{infoNote,jdbcType=INTEGER},
+      </if>
+      <if test="infoBasicinfo != null" >
+        info_basicinfo = #{infoBasicinfo,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where info_id = #{infoId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="ctrl.cs.txzp.modal.UserInfo" >
+    update userinfo
+    set info_userid = #{infoUserid,jdbcType=INTEGER},
+      info_tel = #{infoTel,jdbcType=INTEGER},
+      info_QQ = #{infoQq,jdbcType=INTEGER},
+      info_stunum = #{infoStunum,jdbcType=INTEGER},
+      info_note = #{infoNote,jdbcType=INTEGER},
+      info_basicinfo = #{infoBasicinfo,jdbcType=LONGVARCHAR}
+    where info_id = #{infoId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="ctrl.cs.txzp.modal.UserInfo" >
+    update userinfo
+    set info_userid = #{infoUserid,jdbcType=INTEGER},
+      info_tel = #{infoTel,jdbcType=INTEGER},
+      info_QQ = #{infoQq,jdbcType=INTEGER},
+      info_stunum = #{infoStunum,jdbcType=INTEGER},
+      info_note = #{infoNote,jdbcType=INTEGER}
+    where info_id = #{infoId,jdbcType=INTEGER}
+  </update>
+</mapper>
