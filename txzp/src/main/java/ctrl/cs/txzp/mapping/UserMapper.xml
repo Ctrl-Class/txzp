@@ -79,4 +79,13 @@
       roleid = #{roleid,jdbcType=INTEGER}
     where userid = #{userid,jdbcType=INTEGER}
   </update>
+  
+  <!-- 赵学融    login时调用 -->
+  <select id="checkUser" resultMap="BaseResultMap" parameterType="ctrl.cs.txzp.modal.User" >
+    select 
+    <include refid="Base_Column_List" />
+    from user
+    where username = #{username,jdbcType=VARCHAR}
+    and userpassword = #{userpassword,jdbcType=VARCHAR}
+  </select>
 </mapper>
