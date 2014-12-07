@@ -35,5 +35,52 @@ public class userServiceImpl implements UserService {
 		}
 		
 	}
-
+	
+	@Override
+	@SuppressWarnings("finally")
+	public boolean addUser(String loginName,String passWord,int roleid){
+		User user = new User();
+		try{
+			user.setRoleid(roleid);
+			user.setUsername(loginName);
+			user.setUserpassword(passWord);
+			userMaping.insert(user);
+		}catch(Exception e){
+			e.printStackTrace();
+			return false;
+		}finally{
+			return true;
+		}
+	}
+	
+	@SuppressWarnings("finally")
+	@Override
+	public User selectUserByPrimerKey(int userid){
+		User user = null;
+		try {
+			user = userMaping.selectByPrimaryKey(userid);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}finally{
+			return user;
+		}
+	}
+	@SuppressWarnings("finally")
+	@Override
+	public boolean updateUser(int userid, String userName,String passWord){
+		User user = new User();
+		try {
+			user.setUserid(userid);
+			user.setUsername(userName);
+			user.setUserpassword(passWord);
+			userMaping.updateByPrimaryKeySelective(user);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			return false;
+		} finally{
+			return true;
+		}
+	}
 }

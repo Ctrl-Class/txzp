@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="ctrl.cs.txzp.dao.ApartmentMapper" >
+  <resultMap id="BaseResultMap" type="ctrl.cs.txzp.modal.Apartment" >
+    <id column="apart_id" property="apartId" jdbcType="INTEGER" />
+    <result column="apart_name" property="apartName" jdbcType="VARCHAR" />
+    <result column="apart_require" property="apartRequire" jdbcType="VARCHAR" />
+    <result column="apart_manager_userid" property="apartManagerUserid" jdbcType="INTEGER" />
+    <result column="apart_deadline" property="apartDeadline" jdbcType="DATE" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="ctrl.cs.txzp.modal.Apartment" extends="BaseResultMap" >
+    <result column="apart_info" property="apartInfo" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    apart_id, apart_name, apart_require, apart_manager_userid, apart_deadline
+  </sql>
+  <sql id="Blob_Column_List" >
+    apart_info
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from apartment
+    where apart_id = #{apartId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from apartment
+    where apart_id = #{apartId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="ctrl.cs.txzp.modal.Apartment" >
+    insert into apartment (apart_id, apart_name, apart_require, 
+      apart_manager_userid, apart_deadline, apart_info
+      )
+    values (#{apartId,jdbcType=INTEGER}, #{apartName,jdbcType=VARCHAR}, #{apartRequire,jdbcType=VARCHAR}, 
+      #{apartManagerUserid,jdbcType=INTEGER}, #{apartDeadline,jdbcType=DATE}, #{apartInfo,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="ctrl.cs.txzp.modal.Apartment" >
+    insert into apartment
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="apartId != null" >
+        apart_id,
+      </if>
+      <if test="apartName != null" >
+        apart_name,
+      </if>
+      <if test="apartRequire != null" >
+        apart_require,
+      </if>
+      <if test="apartManagerUserid != null" >
+        apart_manager_userid,
+      </if>
+      <if test="apartDeadline != null" >
+        apart_deadline,
+      </if>
+      <if test="apartInfo != null" >
+        apart_info,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="apartId != null" >
+        #{apartId,jdbcType=INTEGER},
+      </if>
+      <if test="apartName != null" >
+        #{apartName,jdbcType=VARCHAR},
+      </if>
+      <if test="apartRequire != null" >
+        #{apartRequire,jdbcType=VARCHAR},
+      </if>
+      <if test="apartManagerUserid != null" >
+        #{apartManagerUserid,jdbcType=INTEGER},
+      </if>
+      <if test="apartDeadline != null" >
+        #{apartDeadline,jdbcType=DATE},
+      </if>
+      <if test="apartInfo != null" >
+        #{apartInfo,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="ctrl.cs.txzp.modal.Apartment" >
+    update apartment
+    <set >
+      <if test="apartName != null" >
+        apart_name = #{apartName,jdbcType=VARCHAR},
+      </if>
+      <if test="apartRequire != null" >
+        apart_require = #{apartRequire,jdbcType=VARCHAR},
+      </if>
+      <if test="apartManagerUserid != null" >
+        apart_manager_userid = #{apartManagerUserid,jdbcType=INTEGER},
+      </if>
+      <if test="apartDeadline != null" >
+        apart_deadline = #{apartDeadline,jdbcType=DATE},
+      </if>
+      <if test="apartInfo != null" >
+        apart_info = #{apartInfo,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where apart_id = #{apartId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="ctrl.cs.txzp.modal.Apartment" >
+    update apartment
+    set apart_name = #{apartName,jdbcType=VARCHAR},
+      apart_require = #{apartRequire,jdbcType=VARCHAR},
+      apart_manager_userid = #{apartManagerUserid,jdbcType=INTEGER},
+      apart_deadline = #{apartDeadline,jdbcType=DATE},
+      apart_info = #{apartInfo,jdbcType=LONGVARCHAR}
+    where apart_id = #{apartId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="ctrl.cs.txzp.modal.Apartment" >
+    update apartment
+    set apart_name = #{apartName,jdbcType=VARCHAR},
+      apart_require = #{apartRequire,jdbcType=VARCHAR},
+      apart_manager_userid = #{apartManagerUserid,jdbcType=INTEGER},
+      apart_deadline = #{apartDeadline,jdbcType=DATE}
+    where apart_id = #{apartId,jdbcType=INTEGER}
+  </update>
+</mapper>

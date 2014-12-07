@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="ctrl.cs.txzp.dao.AuthorityMapper" >
+  <resultMap id="BaseResultMap" type="ctrl.cs.txzp.modal.Authority" >
+    <id column="auth_id" property="authId" jdbcType="INTEGER" />
+    <result column="auth_roleid" property="authRoleid" jdbcType="INTEGER" />
+    <result column="auth_funid" property="authFunid" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    auth_id, auth_roleid, auth_funid
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from authority
+    where auth_id = #{authId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from authority
+    where auth_id = #{authId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="ctrl.cs.txzp.modal.Authority" >
+    insert into authority (auth_id, auth_roleid, auth_funid
+      )
+    values (#{authId,jdbcType=INTEGER}, #{authRoleid,jdbcType=INTEGER}, #{authFunid,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="ctrl.cs.txzp.modal.Authority" >
+    insert into authority
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="authId != null" >
+        auth_id,
+      </if>
+      <if test="authRoleid != null" >
+        auth_roleid,
+      </if>
+      <if test="authFunid != null" >
+        auth_funid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="authId != null" >
+        #{authId,jdbcType=INTEGER},
+      </if>
+      <if test="authRoleid != null" >
+        #{authRoleid,jdbcType=INTEGER},
+      </if>
+      <if test="authFunid != null" >
+        #{authFunid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="ctrl.cs.txzp.modal.Authority" >
+    update authority
+    <set >
+      <if test="authRoleid != null" >
+        auth_roleid = #{authRoleid,jdbcType=INTEGER},
+      </if>
+      <if test="authFunid != null" >
+        auth_funid = #{authFunid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where auth_id = #{authId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="ctrl.cs.txzp.modal.Authority" >
+    update authority
+    set auth_roleid = #{authRoleid,jdbcType=INTEGER},
+      auth_funid = #{authFunid,jdbcType=INTEGER}
+    where auth_id = #{authId,jdbcType=INTEGER}
+  </update>
+</mapper>

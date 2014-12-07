@@ -11,44 +11,88 @@
 
 
 
-<script type="text/javascript" src="../js/bootstrap.js"></script>
-<script type="text/javascript" src="../js/login.js"></script>
+
 </head>
 <canvas id="canvas"></canvas>
 <script type="text/javascript" src="../js/hackShow.js"></script>
 <div class="loginRect">
 	<div class="input-group">
 		<span class="input-group-addon" style="background-color: #5cb85c"><b>U</b></span>
-		<input type="text" id="loginName" class="form-control" placeholder="Username">
+		<input type="text" id="loginName" class="form-control"
+			placeholder="Username">
 	</div>
 	<br />
 	<div class="input-group">
 		<span class="input-group-addon" style="background-color: #5cb85c"><b>P</b></span>
-		<input type="password" id="passWord" class="form-control" placeholder="PassWord">
+		<input type="password" id="passWord" class="form-control"
+			placeholder="PassWord">
 	</div>
 	<br />
 	<div class="row">
 		<div class="col-lg-6">
 			<div class="input-group">
-				<span class="input-group-addon" style="background-color: #5cb85c"><b>#</b></span> 
-				<input type="text" id="identyCode" class="form-control">
+				<span class="input-group-addon" style="background-color: #5cb85c"><b>#</b></span>
+				<input type="text" id="identyCode" class="form-control" />
 			</div>
 		</div>
 		<!-- /.col-lg-6 -->
 		<div class="col-lg-6">
-			<div class="input-group" align="right"> 
-			<input type="text" onselectstart="return false" oncopy="return false" onpaste="return false" readonly="readonly" id="checkCode" onclick="createCode()" class="code" 
-				disabled="disabled" style="disabled: none;margin-left: 20px;border:solid 1px green;font-weight:bold;font-style:italic;text-align:center;width: 66px;height:34px;background-color: #5cb85c;color:black;" />
+			<div class="input-group" align="right">
+				<input type="text" onselectstart="return false"
+					oncopy="return false" onpaste="return false" readonly="readonly"
+					id="checkCode" onclick="createCode()" class="code"
+					disabled="disabled"
+					style="disabled: none; margin-left: 20px; border: solid 1px green; font-weight: bold; font-style: italic; text-align: center; width: 66px; height: 34px; background-color: #5cb85c; color: black;" />
 			</div>
 		</div>
 	</div>
-	<br/>
+	<br />
 	<div class="row">
-		<div class="col-lg-6"><button id="login" type="button" class="btn btn-success">登录</button></div>
-		<div class="col-lg-6" align="right"><button type="button"  class="btn btn-success" >注册</button></div>
+		<div class="col-lg-6">
+			<button id="login" type="button" class="btn btn-success">登录</button>
+		</div>
+		<div class="col-lg-6" align="right">
+			<button type="button" class="btn btn-success" data-toggle="modal"
+				data-target="#regist">注册</button>
+		</div>
 	</div>
 </div>
 
+<!--  注册模态框  start-->
+<div class="modal fade" id="regist" tabindex="-1" role="dialog"
+	aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">
+					<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+				</button>
+				<h4 class="modal-title">注册</h4>
+			</div>
+			<div class="modal-body" align="center">
+				<form class="form-inline" role="form">
+					<div class="form-group has-feedback">
+						<label class="control-label" for="inputSuccess4" >用户名：<span style="color: red;">*</span></label> 
+						<input type="text" class="form-control" id="userName"> 
+						<span class="glyphicon  form-control-feedback"></span>
+					</div>
+				</form>
+
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+				<button type="button" class="btn btn-success">注册</button>
+			</div>
+		</div>
+		<!-- /.modal-content -->
+	</div>
+	<!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+<!--  注册模态框  end-->
+
+<script type="text/javascript" src="../js/bootstrap.js"></script>
+<script type="text/javascript" src="../js/login.js"></script>
 </body>
 
 </html>
