@@ -83,4 +83,18 @@ public class userServiceImpl implements UserService {
 			return true;
 		}
 	}
+	@Override
+	@SuppressWarnings("finally")
+	public User findUserByUsername(String username){
+		User user = null;
+		try {
+			user = userMaping.findUserByUsername(username);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		} finally {
+			return user;
+		}
+	}
+	
 }

@@ -88,4 +88,12 @@
     where username = #{username,jdbcType=VARCHAR}
     and userpassword = #{userpassword,jdbcType=VARCHAR}
   </select>
+  
+  <!-- 赵学融    registe时调用 -->
+  <select id="findUserByUsername" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from user
+    where username = #{username,jdbcType=VARCHAR}
+  </select>
 </mapper>

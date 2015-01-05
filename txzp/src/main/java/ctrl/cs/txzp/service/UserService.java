@@ -11,5 +11,9 @@ public interface UserService {
 	public User selectUserByPrimerKey(int userid);
 	
 	public boolean updateUser(int userid, String userName,String passWord);
+	
+	public User findUserByUsername(String username);
+	
+	;
 		
 }

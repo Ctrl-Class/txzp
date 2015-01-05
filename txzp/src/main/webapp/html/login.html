@@ -32,7 +32,7 @@
 		<div class="col-lg-6">
 			<div class="input-group">
 				<span class="input-group-addon" style="background-color: #5cb85c"><b>#</b></span>
-				<input type="text" id="identyCode" class="form-control" />
+				<input type="text" id="identyCode" class="form-control" style="width:80px;" placeholder="验证码"/>
 			</div>
 		</div>
 		<!-- /.col-lg-6 -->
@@ -71,17 +71,29 @@
 			</div>
 			<div class="modal-body" align="center">
 				<form class="form-inline" role="form">
-					<div class="form-group has-feedback">
-						<label class="control-label" for="inputSuccess4" >用户名：<span style="color: red;">*</span></label> 
-						<input type="text" class="form-control" id="userName"> 
-						<span class="glyphicon  form-control-feedback"></span>
+					<div id="usernameDiv" class="form-group has-feedback">
+						<label class="control-label" for="inputSuccess4" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;用户名：<span style="color: red;">*</span></label> 
+						<input type="text" class="form-control" id="userName" onblur="javascript:checkName()"/> 
+						<span id="resultName" class="glyphicon  form-control-feedback"></span>
+					</div>
+					<br/><br/>
+					<div id="passwordDiv" class="form-group has-feedback">
+						<label class="control-label" for="inputSuccess4" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;密码：<span style="color: red;">*</span></label> 
+						<input type="password" class="form-control" id="newpassWord" onblur="javascript:checkPassword()"/> 
+						<span id="resultPassword" class="glyphicon  form-control-feedback"></span>
+					</div>
+					<br/><br/>
+					<div id="repasswordDiv" class="form-group has-feedback">
+						<label class="control-label" for="inputSuccess4" >确认密码：<span style="color: red;">*</span></label> 
+						<input type="password" class="form-control" id="repassWord" onblur="javascript:checkPassword()"/> 
+						<span id="resultRePassword" class="glyphicon  form-control-feedback"></span>
 					</div>
 				</form>
 
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-				<button type="button" class="btn btn-success">注册</button>
+				<button type="button" class="btn btn-success" onclick="javascript:creatNewUser()">注册</button>
 			</div>
 		</div>
 		<!-- /.modal-content -->
@@ -93,6 +105,7 @@
 
 <script type="text/javascript" src="../js/bootstrap.js"></script>
 <script type="text/javascript" src="../js/login.js"></script>
+<script type="text/javascript" src="../js/registe.js"></script>
 </body>
 
 </html>
