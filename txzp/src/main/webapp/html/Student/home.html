@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>主页</title>
+    <!--bootstrap引入-->
+    <link href="../../css/bootstrap.css" rel="stylesheet" type="text/css"/>
+    <script src="../../js/jquery.1.11.1.js"></script>
+    <script src="../../js/tab.js"></script>
+    <script src="../../js/templates.js"></script>
+    <script src="home.js"></script>
+</head>
+<body>
+
+<!-- 导航 -->
+<nav class="navbar navbar-inverse" role="navigation">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">团学招聘系统</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li class="active">
+                    <a href="#">我的主页</a>
+                </li>
+                <li>
+                    <a data-toggle="modal" data-target="#myModals">提交申请</a>
+                </li>
+                <li><a href="applicationStatus.html">查看申请结果</a></li>
+            </ul>
+            <form class="navbar-form navbar-left" role="search">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="团委宣传部">
+                </div>
+                <button type="submit" class="btn btn-default">搜索</button>
+            </form>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle"
+                       data-toggle="dropdown">20125084<span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="#">修改密码</a></li>
+                        <li><a href="#">登出</a></li>
+
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container-fluid -->
+</nav>
+<div class="container">
+    <div class="col-md-12">
+        <div class="col-md-2">
+            <ul class="nav nav-pills nav-stacked" role="tablist" id="mytab">
+                <li role="presentation" class="active">
+                    <a href="#studentUnion" role="tab" data-toggle="pill">学生会</a>
+                </li>
+                <li role="presentation">
+                    <a href="#youthLeagueCommittee" role="tab" data-toggle="pill">团委</a>
+                </li>
+
+            </ul>
+        </div>
+
+        <div class="col-md-10 ">
+            <div class="panel panel-default">
+                <div class="panel-heading">选择部门</div>
+                <div class="panel-body">
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="studentUnion">
+
+
+                        </div>
+
+                        <div class="tab-pane" id="youthLeagueCommittee">
+
+                            <!--<div class="col-sm-6 col-md-4">-->
+                            <!--<div class="thumbnail well">-->
+                            <!--<div class="caption">-->
+                            <!--<center><h2>组织部</h2>-->
+                            <!--<br/>-->
+                            <!--<a href="detailInfo.html" class="btn btn-primary" role="button">查看部门</a>-->
+                            <!--</center>-->
+                            <!--</div>-->
+                            <!--</div>-->
+                            <!--</div>-->
+
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- Modal -->
+<form class="form-inline" id="applicationForm">
+    <div class="modal fade" id="myModals" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span
+                            aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title" id="myModalLabel">填写申请表</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="">
+                        <lable style="float: left"><b>部门选择：</b></lable>
+                        <!--<span class="col-md-2"></span>-->
+                        <select  name='appartmentId' id="appartmentList">
+                            <!--<option value="团委宣传部">团委宣传部</option>-->
+                            <!--<option value="团委宣传部">团委宣传部</option>-->
+                            <!--<option value="团委宣传部">团委宣传部</option>-->
+                            <!--<option value="团委宣传部">团委宣传部</option>-->
+                        </select>
+                    </div>
+                    <br/>
+
+                    <div class="row">
+                        <label class="col-md-6">
+                            姓名：
+                            <input name='stuName' value="li"/>
+                        </label>
+                        <label class="col-md-6">
+                            qq&nbsp;&nbsp;&nbsp;：
+                            <input name='stuQQ' value="827519353"/>
+                        </label>
+
+                    </div>
+
+                    <div class="row">
+                        <label class="col-md-6">
+                            学号：
+                            <input name='stuNo' value="20122333"/>
+                        </label>
+                        <label class="col-md-6">
+                            电话：
+                            <input name='stuTel' value="12032323242"/>
+                        </label>
+
+                    </div>
+                    <div class="row">
+                        <label class="col-md-6">
+                            班级：
+                            <input name='stuClass' value="信安1201"/>
+                        </label>
+                        <label class="col-md-6">
+                            性别&nbsp;&nbsp;&nbsp;
+                            <label>
+                                <input type="radio" name="sex" value="男" checked="checked"/>
+                                男
+                            </label>
+
+                            <label>
+                                <input type="radio" name="sex" value="女"/>
+                                女
+                            </label>
+                        </label>
+                    </div>
+                    <div>
+                        <label style="float: left">
+                            爱好：
+                        </label>
+                        <textarea name='stuLike' rows="4" style="width: 495px;resize: none;">
+                            开始书写
+                        </textarea>
+
+
+                    </div>
+                    <br/>
+
+                    <div>
+                        <label style="float: left">
+                            特长：
+                        </label>
+                        <textarea name='stuGood' rows="4" style="width: 495px;resize: none;">
+                            开始书写
+                        </textarea>
+
+
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                    <input type="submit" class="btn btn-primary" value="提交"/>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</form>
+
+<footer>
+    <hr/>
+    <center>
+        <p>Designed and built with all the love in the world by @mdo and @fat.</p>
+
+        <p>Maintained by the core team with the help of our contributors.</p>
+
+        <p>本项目源码受 MIT 开源协议保护，文档受 CC BY 3.0 开源协议保护。</p>
+    </center>
+</footer>
+
+
+<script type="text/javascript" src="../../js/bootstrap.js"></script>
+
+</body>
+</html>

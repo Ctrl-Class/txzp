@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>处理申请表</title>
+    <!--bootstrap引入-->
+    <link href="../../css/bootstrap.css" rel="stylesheet" type="text/css"/>
+    <script src="../../js/jquery.1.11.1.js"></script>
+    <script src="../../js/tab.js" ></script>
+    <script src="dealApplication.js"></script>
+
+</head>
+<body>
+
+<!-- 导航 -->
+<nav class="navbar navbar-inverse" role="navigation">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">团学招聘系统</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li><a href="home.html">我的主页</a></li>
+                <li class="active"><a href="#">审核申请</a></li>
+                <li><a href="checkResult.html">查看录取统计</a></li>
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle"
+                       data-toggle="dropdown">宣传部<span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="#">修改密码</a></li>
+                        <li><a href="#">登出</a></li>
+
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container-fluid -->
+</nav>
+
+<div class="container">
+    <div class="panel panel-success">
+        <div class="panel-heading">
+            <div class="panel-title">
+                <h3>
+                    <a href="#">待审核 <span class="badge" id="totalNum">12</span></a>
+                    &nbsp; &nbsp; &nbsp; &nbsp;
+                    <span>当前为第<strong id="currentNum">2</strong>份</span>
+                </h3>
+            </div>
+        </div>
+        <div class="panel-body ">
+            <div class="row">
+                <div class=" col-md-offset-2 col-lg-4">
+                    <h3></he> <span class=" label label-primary">
+                         <b>姓名</b>
+                      </span>
+                        <span id="name">22222222</span>
+                    </h3>
+                </div>
+                <div class=" col-md-4">
+                    <h3><span class=" label label-primary"><b>性别</b></span>
+                        <span id="sex">男</span>
+                    </h3>
+                </div>
+            </div>
+            <br/>
+            <div class="row">
+                <div class="col-md-offset-2 col-lg-4">
+                    <h3><span class=" label label-primary"><b>班级</b></span>
+                        <span id="class">22222222</span>
+                    </h3>
+                </div>
+                <div class=" col-md-4">
+                    <h3><span class=" label label-primary"><b>学号</b></span>
+                        <span id="num">22222222</span></h3>
+                </div>
+            </div>
+            <br/>
+            <div class="row">
+                <div class="col-md-offset-2 col-lg-4">
+                    <h3><span class=" label label-primary"><b>电话</b></span>
+                        <span id="tel">22222222</span></h3>
+                </div>
+                <div class=" col-md-4">
+                    <h3><span class=" label label-primary"><b>QQ</b></span>
+                        <span id="QQ">22222222</span></h3>
+                </div>
+            </div>
+            <br/>
+            <div class="row">
+                <div class="col-md-offset-2 col-md-1">
+                    <h3><span class=" label label-primary"><b>爱好</b></span></h3>
+                </div>
+                <div class=" col-md-6 panel panel-default">
+                    <p id="hobbit"> label 元素不会向用户呈现任何特殊效果。不过，它为鼠标用户改进了可用性。如
+                        果您在 label 元素内点击文本，就会触发此控件。就是说，当用户选择该标签时，
+                        浏览器就会自动将焦点转到和标签相关的表单控件上。label 元素不会向用户呈现
+                        任何特殊效果 。不过，它为鼠标用户改进了可用性。如果您在 label 元素内点击文本，就会触 </p>
+                </div>
+            </div>
+            <br/>
+            <div class="row">
+                <div class="col-md-offset-2 col-md-1">
+                    <h3><span class=" label label-primary"><b>特长</b></span></h3>
+                </div>
+                <div class=" col-md-6 panel panel-default">
+                    <p id="specialty"> label 元素不会向用户呈现任何特殊效果。不过，它为鼠标用户改进了可用性。如果您在 label
+                        元素内点击文本，就会触发此控件。就是说，当用户选择该标签时，浏览器就会自动将焦点转到和标签相关的表单控件上。 </p>
+                </div>
+            </div>
+            <br/>
+            <div class="row col-md-offset-5">
+                <div>
+                    <button type="button" class="btn btn-primary">通过</button>
+                    <button type="button" class="btn btn-primary">不通过</button>
+                    <button type="button" class="btn btn-primary">下一个</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<footer>
+    <hr/>
+    <center>
+        <p>Designed and built with all the love in the world by @mdo and @fat.</p>
+
+        <p>Maintained by the core team with the help of our contributors.</p>
+
+        <p>本项目源码受 MIT 开源协议保护，文档受 CC BY 3.0 开源协议保护。</p>
+    </center>
+</footer>
+
+
+<script type="text/javascript" src="../../js/bootstrap.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>主页</title>
+    <!--bootstrap引入-->
+    <link href="../../css/bootstrap.css" rel="stylesheet" type="text/css"/>
+    <script src="../../js/jquery.1.11.1.js"></script>
+    <script src="../../js/tab.js" ></script>
+    <script src="home.js"></script>
+</head>
+<body>
+
+<!-- 导航 -->
+<nav class="navbar navbar-inverse" role="navigation">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">团学招聘系统</a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#">我的主页</a></li>
+                <li><a href="dealApplication.html">审核申请</a></li>
+                <li><a href="checkResult.html">查看录取统计</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle"
+                       data-toggle="dropdown">宣传部<span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="#">修改密码</a></li>
+                        <li><a href="#">登出</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container-fluid -->
+</nav>
+
+<div class="container">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="panel-title">
+                    <h3>部门信息</h3>
+                </div>
+
+            </div>
+            <div class="panel-body" id="departmentDetail">
+                <div class="row">
+                    <div class="col-md-offset-3 col-md-4">
+                        <h3><span class="label label-primary">部长</span>
+                            <span id="ministerBig">张三</span></h3>
+                    </div>
+                    <div class="col-md-4">
+                        <h3><span class="label label-primary">副部长</span>
+                            <span id="ministerSmall">李四</span>
+                        </h3>
+                    </div>
+                </div>
+                <br/>
+
+                <div class="row">
+                    <div class="col-md-offset-2 col-md-2">
+                        <h3><span class="label label-primary">基本介绍:</span></h3>
+                    </div>
+
+                    <div class="col-md-7 panel panel-default">
+                        <div class="panel-body">
+                            <p  id="basicInfo">中共中央宣传部是中共中央主管意识形态方面工作的综合职能部门。
+                                1924年5月，中央正式决定分设宣传、组织、工农等部，罗章龙为中央宣传部部长。
+                                “文化大革命”期间被取消。1976年10月中央决定恢复成立。
+                            </p>
+                        </div>
+                    </div>
+
+
+                </div>
+                <br/>
+
+                <div class="row">
+                    <div class="col-md-offset-2 col-md-2">
+                        <h3><span class="label label-primary">招聘要求:</span></h3>
+                    </div>
+                    <div class="col-md-7 panel panel-default">
+                        <div class="panel-body">
+                            <p id="requireInfo">中共中央宣传部是中共中央主管意识形态方面工作的综合职能部门。
+                                1924年5月，中央正式决定分设宣传、组织、工农等部，罗章龙为中央宣传部部长。
+                                “文化大革命”期间被取消。1976年10月中央决定恢复成立。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <br/>
+
+                <div class="row">
+                    <div class="col-md-offset-2 col-md-3">
+                        <h3><span class="label label-primary">申请截止日期:</span></h3>
+                    </div>
+                    <div class="col-md-3">
+                        <h3><strong id="deadLine">2015.2.20</strong></h3>
+                    </div>
+                </div>
+                <br/>
+                <!--Button trigger modal-->
+                <div class="row ">
+                    <button type="button" class="btn btn-primary btn-lg col-md-offset-6 col-md-1" data-toggle="modal"
+                            data-target="#myModal">信息更新
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<form class="form-inline">
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span
+                            aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title" id="myModalLabel">部门信息更新</h4>
+                </div>
+                <div class="modal-body">
+
+
+                    <div>
+                        <label style="float: left">
+                            基本介绍：
+                        </label>
+                        <textarea id='basicInfoInput' rows="4" style="width: 495px;resize: none;">
+                            开始书写
+                        </textarea>
+
+
+                    </div>
+                    <br/>
+
+                    <div>
+                        <label style="float: left">
+                            招聘要求：
+                        </label>
+                        <textarea id='requireInfoInput' rows="4" style="width: 495px;resize: none;">
+                            开始书写
+                        </textarea>
+
+
+                    </div>
+                    <br/>
+
+                    <div class="row">
+                        <label class="col-md-12">
+                            申请截止日期：
+                            <input id="deadLineInput" value="2012.12.12"/>
+                        </label>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                    <button id='submit' type="button" class="btn btn-primary">提交</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</form>
+
+
+<footer>
+    <hr/>
+    <center>
+        <p>Designed and built with all the love in the world by @mdo and @fat.</p>
+
+        <p>Maintained by the core team with the help of our contributors.</p>
+
+        <p>本项目源码受 MIT 开源协议保护，文档受 CC BY 3.0 开源协议保护。</p>
+    </center>
+</footer>
+
+
+<script type="text/javascript" src="../../js/bootstrap.js"></script>
+
+</body>
+</html>

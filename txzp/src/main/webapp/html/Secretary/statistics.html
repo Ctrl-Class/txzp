@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>主页</title>
+    <!--bootstrap引入-->
+    <link href="../../css/bootstrap.css" rel="stylesheet" type="text/css"/>
+    <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+    <script src="../../js/templates.js"></script>
+    <script src="../../js/tab.js" ></script>
+    <script src="statistics.js"></script>
+</head>
+<body>
+
+<!-- 导航 -->
+<nav class="navbar navbar-inverse" role="navigation">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">团学招聘系统</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li ><a href="home.html">我的主页</a></li>
+                <li class="active"><a href="#">招聘信息统计</a></li>
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle"
+                       data-toggle="dropdown">书记<span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="#">修改密码</a></li>
+                        <li><a href="#">登出</a></li>
+
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container-fluid -->
+</nav>
+
+
+
+<div class="container">
+
+    <ul class="nav nav-tabs col-lg-offset-2 col-md-8" role="tablist" id="mytab">
+        <li role="presentation" class="active"><a href="#studentUnion" role="tab" data-toggle="tab"  >学生会</a></li>
+        <li role="presentation"><a href="#youthLeagueCommittee" role="tab" data-toggle="tab">团委</a></li>
+    </ul>
+    <br/>
+    <br/>
+  <div   class="col-lg-offset-2 col-md-8">
+      <div class="tab-content">
+          <div class=" tab-pane active"  id="studentUnion">
+              <table class="table table-striped table-hover ">
+                  <thead  >
+                  <tr >
+                      <td  >
+                          部门
+                      </td>
+                      <td   >
+                          报名人数
+                      </td >
+                      <td  >
+                          通过人数
+                      </td>
+                      <td   >
+                          通过率
+                      </td>
+                  </tr>
+                  </thead>
+                  <tbody >
+
+                  </tbody>
+              </table>
+          </div>
+          <div class=" tab-pane "  id="youthLeagueCommittee">
+              <table class="table table-striped table-hover ">
+                  <thead  >
+                  <tr >
+                      <td  >
+                          部门
+                      </td>
+                      <td   >
+                          报名人数
+                      </td >
+                      <td  >
+                          通过人数
+                      </td>
+                      <td   >
+                          通过率
+                      </td>
+                  </tr>
+                  </thead>
+                  <tbody  >
+                  <!--<tr >-->
+                      <!--<td  >-->
+                          <!--组织部-->
+                      <!--</td>-->
+                      <!--<td   >-->
+                          <!--30-->
+                      <!--</td >-->
+                      <!--<td   >-->
+                          <!--10-->
+                      <!--</td>-->
+                      <!--<td   >-->
+                          <!--33%-->
+                      <!--</td>-->
+                  <!--</tr>-->
+                  </tbody>
+              </table>
+          </div>
+      </div>
+
+  </div>
+
+
+
+
+
+</div>
+
+
+
+<footer>
+    <hr/>
+    <center>
+        <p>Designed and built with all the love in the world by @mdo and @fat.</p>
+
+        <p>Maintained by the core team with the help of our contributors.</p>
+
+        <p>本项目源码受 MIT 开源协议保护，文档受 CC BY 3.0 开源协议保护。</p>
+    </center>
+</footer>
+
+
+<script type="text/javascript" src="../../js/bootstrap.js"></script>
+
+</body>
+</html>
