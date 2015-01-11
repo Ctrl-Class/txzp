@@ -13,6 +13,9 @@ $(document).ready(function () {
                 {id: 6, names: '组织部', status: '通过',stuName:'1',stuNo:'1',stuClass:'1',stuTel:'1',stuqq:'',stuSex:'', stuLike:'6',stuGood:'6' },
             ]
         };
+        
+        
+        
         //模板
         var template = '{#foreach $T.application as record}' +
             '<tr　>'+

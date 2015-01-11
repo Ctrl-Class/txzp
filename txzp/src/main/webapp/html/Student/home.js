@@ -144,9 +144,14 @@ $(document).ready(function () {
 
     //加载部门数据块
     initData();
+    
+    
     //加载select下拉框部门列表数据
-    initApartmentListData();
-
+    $("#submitApplication").click(function(){
+    	 
+    	initApartmentListData();
+    })
+    //提交申请表单
     $("#applicationForm").bind("submit", function (e) {
           e.preventDefault();
           var formData=$(this).serializeJson();
@@ -154,23 +159,9 @@ $(document).ready(function () {
     });
 });
 
-//请求部门列表
-//$.ajax({
-//    type : "post",
-//    contentType : "application/x-www-form-urlencoded;charset=UTF-8",
-//    url : '/txzp/userController/loginUser.do',
-//    async : false,
-//
-//    dataType : 'json',
-//    success : function(msg) {
-//        if(msg.result ==true){
-//            alert("success");
-//        }else{
-//            alert(msg.message);
-//        }
-//    },error: function(msg){
-//        alert("网络超时！");
-//    }
-//});
+ 
+
+
+  
 
 

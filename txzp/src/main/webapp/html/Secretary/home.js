@@ -31,15 +31,53 @@ $(document).ready(function () {
 
             ]
         };
-
+     
+        $.ajax({
+    	    type : "get",
+    	    contentType : "application/x-www-form-urlencoded;charset=UTF-8",
+    	    url : '/txzp/apartmentController/getApartmentList.do',
+    	    async : false,
+    	    data:{dependenceId:2},
+    	    dataType : 'json',
+    	    success : function(msg) {
+    	        if(msg.result ==true){
+    	            alert("success");
+    	            studentUniondata.table= msg.apartmentList;
+    	        }else{
+    	            alert(msg.message);
+    	        }
+    	    },error: function(msg){
+    	        alert("网络超时！");
+    	    }
+    	  });
+    	 
+    	$.ajax({
+    	    type : "get",
+    	    contentType : "application/x-www-form-urlencoded;charset=UTF-8",
+    	    url : '/txzp/apartmentController/getApartmentList.do',
+    	    async : false,
+    	    data:{dependenceId : 1},
+    	    dataType : 'json',
+    	    success : function(msg) {
+    	        if(msg.result ==true){
+    	            alert("success");
+    	            youthLeagueCommitteedata.table= msg.apartmentList;
+    	        }else{
+    	            alert(msg.message);
+    	        }
+    	    },error: function(msg){
+    	        alert("网络超时！");
+    	    }
+    	  });
+        
         //模板
         var template = '{#foreach $T.table as record}' +
             '<tr class="col-lg-offset-2 col-md-8">'+
-            '<td class="col-md-3"> {$T.record.id} </td>'+
-            '<td class="col-md-4">{$T.record.name}</td >'+
+            '<td class="col-md-3"> {$T.record.apartId} </td>'+
+            '<td class="col-md-4">{$T.record.apartName}</td >'+
             '<td class="col-md-2">'+
-            ' <input num="{$T.record.id}"  type="button" name="deleteBtn" class="btn btn-primary" value="删除"> '+
-             '<input num="{$T.record.id}" type="button"  name="editBtn" class="btn btn-primary" data-toggle="modal" data-target="#myModal2" value="编辑"> '+
+            ' <input num="{$T.record.apartId}"  type="button" name="deleteBtn" class="btn btn-primary" value="删除"> '+
+             '<input num="{$T.record.apartId}" type="button"  name="editBtn" class="btn btn-primary" data-toggle="modal" data-target="#myModal2" value="编辑"> '+
             '</td>'+
             '</tr>'+
             '{#/for}';

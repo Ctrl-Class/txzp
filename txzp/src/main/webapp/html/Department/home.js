@@ -18,11 +18,32 @@ $(document).ready(function () {
                     "“文化大革命”期间被取消。1976年10月中央决定恢复成立。",
                 deadLine:"2015.2.20"}
         };
-        $('#ministerBig').text(data.detail.ministerBig);
-        $('#ministerSmall').text(data.detail.ministerSmall);
-        $('#basicInfo').text(data.detail.departmentInfo);
-        $('#requireInfo').text(data.detail.requirement);
-        $('#deadLine').text(data.detail.deadLine);
+        
+        $.ajax({
+    	    type : "get",
+    	    contentType : "application/x-www-form-urlencoded;charset=UTF-8",
+    	    url : '/txzp/apartmentController/getApartmentById.do',
+    	    async : false,
+    	    data:{apartId:1},//当前部门id???
+    	    dataType : 'json',
+    	    success : function(msg) {
+    	        if(msg.result ==true){
+    	            alert("success");
+    	            data.detail= msg.apartmentList;
+    	        }else{
+    	            alert(msg.message);
+    	        }
+    	    },error: function(msg){
+    	        alert("网络超时！");
+    	    }
+    	  });
+        
+        
+        $('#ministerBig').text(data.detail.ministerBig);//?无该字段
+        $('#ministerSmall').text(data.detail.ministerSmall);//?
+        $('#basicInfo').text(data.detail.apartInfo);
+        $('#requireInfo').text(data.detail.apartRequire);
+        $('#deadLine').text(data.detail.apartDeadline);
     }
 
     //加载部门详情数据

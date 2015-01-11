@@ -8,6 +8,8 @@ public class User {
     private String userpassword;
 
     private Integer roleid;
+    
+    private Integer userpartid;
 
     public Integer getUserid() {
         return userid;
@@ -40,4 +42,12 @@ public class User {
     public void setRoleid(Integer roleid) {
         this.roleid = roleid;
     }
+
+	public Integer getUserpartid() {
+		return userpartid;
+	}
+
+	public void setUserpartid(Integer userpartid) {
+		this.userpartid = userpartid;
+	}
 }

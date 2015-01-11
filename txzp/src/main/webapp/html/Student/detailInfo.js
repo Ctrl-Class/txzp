@@ -10,6 +10,7 @@
 })(jQuery);
 
 $(document).ready(function(){
+	
   var initListData=function(){
        //加载部门列表select
        var appartmentListData = {
@@ -45,8 +46,9 @@ $(document).ready(function(){
    var initData=function(data){
 
          var data = {
-            name:'组织部',
-             detail:{ministerBig: '1',
+               detail:{
+            	 name:'组织部',
+            	 ministerBig: '1',
                  ministerSmall:"2",
                  departmentInfo:"3。1976年10月中央决定恢复成立。",
                  requirement:"4央宣传部是中共中央主管意识形态方面工作的综合职能部门。" +
@@ -54,12 +56,35 @@ $(document).ready(function(){
                      "“文化大革命”期间被取消。1976年10月中央决定恢复成立。",
                  deadLine:"2015.1.10"}
          };
-         $('#name').text(data.name);
-         $('#ministerBig').text(data.detail.ministerBig);
-         $('#ministerSmall').text(data.detail.ministerSmall);
-         $('#basicInfo').text(data.detail.departmentInfo);
-         $('#requireInfo').text(data.detail.requirement);
-         $('#deadLine').text(data.detail.deadLine);
+         
+       $.ajax({
+       type : "get",
+       contentType : "application/x-www-form-urlencoded;charset=UTF-8",
+       url : '/txzp/apartmentController/getApartmentById.do',
+       async : false,
+       data : {
+          id:appartmentId
+       },
+       dataType : 'json',
+       success : function(msg) {
+           if(msg.result ==true){
+               alert("success");
+               data.detail=msg.apartmentList;
+             }else{
+               alert(msg.message);
+           }
+       },error: function(msg){
+           alert("网络超时！");
+       }
+   });
+         
+         
+         $('#name').text(data.apartName);
+         $('#ministerBig').text(data.detail.ministerBig);//? 没有该字段
+         $('#ministerSmall').text(data.detail.ministerSmall);//?
+         $('#basicInfo').text(data.detail.apartInfo);
+         $('#requireInfo').text(data.detail.apartRequire);
+         $('#deadLine').text(data.detail.apartDeadline);
 
 
 
