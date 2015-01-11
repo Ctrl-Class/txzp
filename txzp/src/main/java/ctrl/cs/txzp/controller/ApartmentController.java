@@ -36,6 +36,7 @@ public class ApartmentController {
 	@SuppressWarnings({ "rawtypes", "unchecked", "finally" })
     @RequestMapping("/getApartmentList")
     public ModelAndView getApartmentList(Integer dependenceId, HttpServletResponse response, HttpServletRequest request) {
+		//dependenceId：0全部 1代表团委 2代表学生会
         ModelAndView mav = new ModelAndView();
         MappingJacksonJsonView view = new MappingJacksonJsonView();
         Map map = new HashMap();
