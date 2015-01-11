@@ -185,4 +185,32 @@
       app_like = #{appLike,jdbcType=VARCHAR}
     where app_id = #{appId,jdbcType=INTEGER}
   </update>
+  <!-- zxr 自定义 -->
+  <select id="selectAllApplications" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from application
+  </select>
+  
+  <select id="selectApplicationsByDependence" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+    select 
+    <include refid="Base_Column_List" />
+    from application,apartment
+    where application.app_apartmenid = apartment.apart_id
+	and apartment.apart_dependence = #{dependenceId,jdbyType=INTEGER}
+  </select>
+  
+  <select id="selectApplicationsByUserId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+    select 
+    <include refid="Base_Column_List" />
+    from application
+    where app_userid = #{userId,jdbcType=INTEGER}
+  </select>
+  
+  <select id="selectApplicationsByApartmentId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+    select 
+    <include refid="Base_Column_List" />
+    from application
+    where app_apartmenid = #{apartId,jdbcType=INTEGER}
+  </select>
 </mapper>

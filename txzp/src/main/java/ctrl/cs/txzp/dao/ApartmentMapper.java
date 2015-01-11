@@ -1,5 +1,7 @@
 package ctrl.cs.txzp.dao;
 
+import java.util.ArrayList;
+
 import ctrl.cs.txzp.modal.Apartment;
 
 public interface ApartmentMapper {
@@ -16,4 +18,8 @@ public interface ApartmentMapper {
     int updateByPrimaryKeyWithBLOBs(Apartment record);
 
     int updateByPrimaryKey(Apartment record);
+    
+    ArrayList<Apartment> selectAllApartmentsByDependence(Integer dependenceId);
+    
+    ArrayList<Apartment> selectAllApartments();
 }

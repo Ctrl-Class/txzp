@@ -7,6 +7,7 @@
     <result column="apart_require" property="apartRequire" jdbcType="VARCHAR" />
     <result column="apart_manager_userid" property="apartManagerUserid" jdbcType="INTEGER" />
     <result column="apart_deadline" property="apartDeadline" jdbcType="DATE" />
+    <result column="apart_dependence" property="apartDependence" jdbcType="INTEGER" />
   </resultMap>
   <resultMap id="ResultMapWithBLOBs" type="ctrl.cs.txzp.modal.Apartment" extends="BaseResultMap" >
     <result column="apart_info" property="apartInfo" jdbcType="LONGVARCHAR" />
@@ -31,10 +32,10 @@
   </delete>
   <insert id="insert" parameterType="ctrl.cs.txzp.modal.Apartment" >
     insert into apartment (apart_id, apart_name, apart_require, 
-      apart_manager_userid, apart_deadline, apart_info
+      apart_manager_userid, apart_deadline, apart_info,apart_dependence
       )
     values (#{apartId,jdbcType=INTEGER}, #{apartName,jdbcType=VARCHAR}, #{apartRequire,jdbcType=VARCHAR}, 
-      #{apartManagerUserid,jdbcType=INTEGER}, #{apartDeadline,jdbcType=DATE}, #{apartInfo,jdbcType=LONGVARCHAR}
+      #{apartManagerUserid,jdbcType=INTEGER}, #{apartDeadline,jdbcType=DATE}, #{apartInfo,jdbcType=LONGVARCHAR},#{apartDependence,jdbcType=INTEGER}
       )
   </insert>
   <insert id="insertSelective" parameterType="ctrl.cs.txzp.modal.Apartment" >
@@ -58,6 +59,9 @@
       <if test="apartInfo != null" >
         apart_info,
       </if>
+      <if test="apartDependence != null" >
+        apart_dependence,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="apartId != null" >
@@ -77,6 +81,9 @@
       </if>
       <if test="apartInfo != null" >
         #{apartInfo,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="apartDependence != null" >
+        #{apartDependence,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -98,6 +105,9 @@
       <if test="apartInfo != null" >
         apart_info = #{apartInfo,jdbcType=LONGVARCHAR},
       </if>
+       <if test="apartDependence != null" >
+        apart_dependence = #{apartDependence,jdbcType=INTEGER},
+      </if>
     </set>
     where apart_id = #{apartId,jdbcType=INTEGER}
   </update>
@@ -107,7 +117,8 @@
       apart_require = #{apartRequire,jdbcType=VARCHAR},
       apart_manager_userid = #{apartManagerUserid,jdbcType=INTEGER},
       apart_deadline = #{apartDeadline,jdbcType=DATE},
-      apart_info = #{apartInfo,jdbcType=LONGVARCHAR}
+      apart_info = #{apartInfo,jdbcType=LONGVARCHAR},
+      apart_dependence = #{apartDependence,jdbcType=INTEGER}
     where apart_id = #{apartId,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="ctrl.cs.txzp.modal.Apartment" >
@@ -118,4 +129,20 @@
       apart_deadline = #{apartDeadline,jdbcType=DATE}
     where apart_id = #{apartId,jdbcType=INTEGER}
   </update>
+  <!-- zxr 自定义 -->
+  <select id="selectAllApartmentsByDependence" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer">
+  	select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from apartment
+    where apart_dependence = #{dependenceId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAllApartments" resultMap="ResultMapWithBLOBs">
+  	select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from apartment
+  </select>
 </mapper>

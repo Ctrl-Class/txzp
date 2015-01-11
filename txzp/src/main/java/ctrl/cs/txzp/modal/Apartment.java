@@ -14,6 +14,8 @@ public class Apartment {
     private Date apartDeadline;
 
     private String apartInfo;
+    
+    private Integer apartDependence;
 
     public Integer getApartId() {
         return apartId;
@@ -62,4 +64,12 @@ public class Apartment {
     public void setApartInfo(String apartInfo) {
         this.apartInfo = apartInfo;
     }
+
+	public Integer getApartDependence() {
+		return apartDependence;
+	}
+
+	public void setApartDependence(Integer apartDependence) {
+		this.apartDependence = apartDependence;
+	}
 }
