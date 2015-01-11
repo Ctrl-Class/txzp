@@ -13,7 +13,7 @@
     <result column="apart_info" property="apartInfo" jdbcType="LONGVARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    apart_id, apart_name, apart_require, apart_manager_userid, apart_deadline
+    apart_id, apart_name, apart_require, apart_manager_userid, apart_deadline,apart_dependence
   </sql>
   <sql id="Blob_Column_List" >
     apart_info
