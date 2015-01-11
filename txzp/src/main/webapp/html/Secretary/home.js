@@ -109,18 +109,35 @@ $(document).ready(function () {
         if(appartmentName!=''&&ministerBigName!=''&&appartAccounts!=''&&appartpassword!='')
         {
             //ajax提交
-
+        	$.ajax({
+        	    type : "get",
+        	    contentType : "application/x-www-form-urlencoded;charset=UTF-8",
+        	    url : '/txzp/apartmentController/insertApartmentInfo.do',
+        	    async : false,
+        	    data:{ },//??
+        	    dataType : 'json',
+        	    success : function(msg) {
+        	        if(msg.result ==true){
+        	            alert("success");
+        	           
+        	        }else{
+        	            alert(msg.message);
+        	        }
+        	    },error: function(msg){
+        	        alert("网络超时！");
+        	    }
+        	  });
         }
 
     })
 
-    //删除部门
+    //编辑部门
     $("input[name='editBtn']").each(function(){
 
          $(this).click(function () {
 
              var id=$(this).attr("num");
-             //删除该id 部门
+             //编辑该id 部门
             $("#editSubmmit").click(function(){
 
                 var  AppartNames= $("#editAppartName").val();
@@ -129,24 +146,39 @@ $(document).ready(function () {
                 var  AppartAccount= $("#editAppartAccount").val();
                 var  Password= $("#editPassword").val();
 
-                   //提交修改
-//                $.ajax({
-//
-//                });
+                  
+                
 
             })
         })
 
     })
 
-    //编辑部门
+    //删除部门
 
     $("input[name='deleteBtn']").each(function(){
 
         $(this).click(function () {
             var id=$(this).attr("num");
             //删除该id 部门
-
+              $.ajax({
+        	    type : "get",
+        	    contentType : "application/x-www-form-urlencoded;charset=UTF-8",
+        	    url : '/txzp/apartmentController/deleteApartmentInfo.do',
+        	    async : false,
+        	    data:{apartId:id}, 
+        	    dataType : 'json',
+        	    success : function(msg) {
+        	        if(msg.result ==true){
+        	            alert("success");
+        	           
+        	        }else{
+        	            alert(msg.message);
+        	        }
+        	    },error: function(msg){
+        	        alert("网络超时！");
+        	    }
+        	  });
         })
 
     })
