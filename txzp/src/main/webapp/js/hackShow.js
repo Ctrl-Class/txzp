@@ -18,8 +18,8 @@ function draw() {
 	context.shadowBlur = 20;
 	context.font = "bold 36px Arial";
 	context.fillStyle = "#eefbf5";
-	//context.fillText("计科学院团学招聘系统", (canvas.width / 2 - context
-	//		.measureText("计科学院团学招聘系统").width / 2), canvas.height * 0.2);
+	context.fillText("计科学院团学招聘系统", (canvas.width / 2 - context
+			.measureText("计科学院团学招聘系统").width / 2), canvas.height * 0.2);
 	//context.fillText("REVOLUTIONS", (canvas.width / 2 - context.measureText("REVOLUTIONS").width / 2), canvas.height - 150);
 	//context.font = "16px Microsoft Yahei";
 	//        context.fillText("黑客帝国：矩阵革命", (canvas.width / 2 - context.measureText("黑客帝国：矩阵革命").width / 2), canvas.height - 100);

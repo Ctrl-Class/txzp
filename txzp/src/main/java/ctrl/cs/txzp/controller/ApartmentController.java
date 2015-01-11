@@ -3,6 +3,7 @@ package ctrl.cs.txzp.controller;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -43,9 +44,10 @@ public class ApartmentController {
         //HttpSession session = request.getSession();
         try {
 			ArrayList<Apartment> apartments = apartmentService.selectAllApartments(dependenceId);
+			System.out.println("dependenceId:"+dependenceId);
 			if(apartments!=null){
 				map.put("apartmentList", apartments);
-				
+				System.out.println("@Controller"+apartments.size());
 				map.put("result", Boolean.TRUE);
 			}else{
 				map.put("result", Boolean.FALSE);
@@ -72,7 +74,7 @@ public class ApartmentController {
         try {
 			Apartment apartment = apartmentService.selectApartmentById(apartId);
 			if(apartment!=null){
-				map.put("apartmentList", apartment);
+				map.put("apartment", apartment);
 				
 				map.put("result", Boolean.TRUE);
 			}else{

@@ -1,6 +1,7 @@
 package ctrl.cs.txzp.service.impl;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,13 +32,17 @@ public class ApartmentServiceImpl implements ApartmentService {
 		try {
 			if (dependenceId == 0)
 				apartments = apartmentMapper.selectAllApartments();
-			else
+			else{
+				System.out.println("@ServiceAfter"+apartmentMapper.selectAllApartmentsByDependence(dependenceId).size());
 				apartments = apartmentMapper.selectAllApartmentsByDependence(dependenceId);
+				System.out.println("@ServiceAfter"+apartments.size());
+			}
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
 			apartments = null;
 		} finally {
+			
 			return apartments;
 		}
 	}

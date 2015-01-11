@@ -1,7 +1,7 @@
 package ctrl.cs.txzp.service;
 
 import java.util.ArrayList;
-
+import java.util.List;
 
 import ctrl.cs.txzp.modal.Apartment;
 

@@ -8,8 +8,6 @@
     <result column="apart_manager_userid" property="apartManagerUserid" jdbcType="INTEGER" />
     <result column="apart_deadline" property="apartDeadline" jdbcType="DATE" />
     <result column="apart_dependence" property="apartDependence" jdbcType="INTEGER" />
-  </resultMap>
-  <resultMap id="ResultMapWithBLOBs" type="ctrl.cs.txzp.modal.Apartment" extends="BaseResultMap" >
     <result column="apart_info" property="apartInfo" jdbcType="LONGVARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
@@ -18,7 +16,7 @@
   <sql id="Blob_Column_List" >
     apart_info
   </sql>
-  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
     ,
@@ -130,7 +128,7 @@
     where apart_id = #{apartId,jdbcType=INTEGER}
   </update>
   <!-- zxr 自定义 -->
-  <select id="selectAllApartmentsByDependence" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer">
+  <select id="selectAllApartmentsByDependence" resultMap="BaseResultMap" parameterType="java.lang.Integer">
   	select 
     <include refid="Base_Column_List" />
     ,
@@ -138,7 +136,7 @@
     from apartment
     where apart_dependence = #{dependenceId,jdbcType=INTEGER}
   </select>
-  <select id="selectAllApartments" resultMap="ResultMapWithBLOBs">
+  <select id="selectAllApartments" resultMap="BaseResultMap">
   	select 
     <include refid="Base_Column_List" />
     ,

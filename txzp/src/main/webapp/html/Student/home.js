@@ -152,7 +152,6 @@ $(document).ready(function () {
           var formData=$(this).serializeJson();
             console.log(formData);
     });
-
 });
 
 //请求部门列表

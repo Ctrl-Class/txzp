@@ -1,6 +1,7 @@
 package ctrl.cs.txzp.dao;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import ctrl.cs.txzp.modal.Apartment;
 
