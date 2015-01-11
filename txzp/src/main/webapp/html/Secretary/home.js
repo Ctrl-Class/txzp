@@ -32,7 +32,7 @@ $(document).ready(function () {
             ]
         };
      
-        $.ajax({
+    	$.ajax({
     	    type : "get",
     	    contentType : "application/x-www-form-urlencoded;charset=UTF-8",
     	    url : '/txzp/apartmentController/getApartmentList.do',
@@ -41,7 +41,7 @@ $(document).ready(function () {
     	    dataType : 'json',
     	    success : function(msg) {
     	        if(msg.result ==true){
-    	            alert("success");
+    	            
     	            studentUniondata.table= msg.apartmentList;
     	        }else{
     	            alert(msg.message);
@@ -60,7 +60,7 @@ $(document).ready(function () {
     	    dataType : 'json',
     	    success : function(msg) {
     	        if(msg.result ==true){
-    	            alert("success");
+    	            
     	            youthLeagueCommitteedata.table= msg.apartmentList;
     	        }else{
     	            alert(msg.message);
@@ -100,12 +100,11 @@ $(document).ready(function () {
     //添加部门
     $("#submit").click(function(){
 
-        var appartmentName= $("#appartName").text();
-        var ministerBigName= $("#ministerBig").text();
-        var ministerSmallName=  $("#ministerSmall").text();
-        var appartAccounts= $("#appartAccount").text();
-        var appartpassword=  $("#password").text();
-
+        var apartName= $("#editappartName").text();
+        var  apartInfo= $("#editbasicInfoInput").val();
+        var  apartRequire= $("#editrequireInfoInput").val();
+        var  apartDeadline= $("#editdeadLineInput").val();
+        //???
         if(appartmentName!=''&&ministerBigName!=''&&appartAccounts!=''&&appartpassword!='')
         {
             //ajax提交
@@ -114,7 +113,7 @@ $(document).ready(function () {
         	    contentType : "application/x-www-form-urlencoded;charset=UTF-8",
         	    url : '/txzp/apartmentController/insertApartmentInfo.do',
         	    async : false,
-        	    data:{ },//??
+        	    data:{apartName:apartName,apartRequire:apartRequire,apartManagerUserid:apartManagerUserid,apartDeadline:apartDeadline,apartInfo:apartInfo},//??用户设置 此时只有一个userid
         	    dataType : 'json',
         	    success : function(msg) {
         	        if(msg.result ==true){
@@ -141,12 +140,28 @@ $(document).ready(function () {
             $("#editSubmmit").click(function(){
 
                 var  AppartNames= $("#editAppartName").val();
-                var  MinisterBig= $("#editMinisterBig").val();
-                var  ministerSmall= $("#editministerSmall").val();
-                var  AppartAccount= $("#editAppartAccount").val();
-                var  Password= $("#editPassword").val();
-
-                  
+                var  apartInfo= $("#basicInfoInput").val();
+                var  apartRequire= $("#requireInfoInput").val();
+                var  apartDeadline= $("#deadLineInput").val();
+              
+                $.ajax({
+            	    type : "post",
+            	    contentType : "application/x-www-form-urlencoded;charset=UTF-8",
+            	    url : '/txzp/apartmentController/updateApartmentInfo.do',
+            	    async : false,
+            	    data:{apartId:id,apartName:AppartNames,apartRequire:apartRequire,apartManagerUserid,apartDeadline:apartDeadline,apartInfo:apartInfo}, //用户id设置
+            	    dataType : 'json',
+            	    success : function(msg) {
+            	        if(msg.result ==true){
+            	            alert("success");
+            	           
+            	        }else{
+            	            alert(msg.message);
+            	        }
+            	    },error: function(msg){
+            	        alert("网络超时！");
+            	    }
+            	  });
                 
 
             })
