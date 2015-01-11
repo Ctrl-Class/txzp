@@ -25,7 +25,7 @@
             <ul class="nav navbar-nav">
                 <li><a href="home.html">我的主页</a></li>
                 <li>
-                    <a data-toggle="modal" data-target="#myModals">提交申请</a>
+                    <a data-toggle="modal" data-target="#myModals" id="submitApplication">提交申请</a>
                 </li>
                 <li class="active"><a href="#">查看申请结果</a></li>
                </ul>
@@ -218,37 +218,36 @@
 
 
 <!-- Modal -->
-<form class="form-inline">
+ <form class="form-inline" id="applicationForm">
     <div class="modal fade" id="myModals" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal"><span
                             aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                    <h4 class="modal-title" id="myModalLabels">填写申请表</h4>
+                    <h4 class="modal-title" id="myModalLabel">填写申请表</h4>
                 </div>
                 <div class="modal-body">
                     <div class="">
                         <lable style="float: left"><b>部门选择：</b></lable>
                         <!--<span class="col-md-2"></span>-->
-                        <select id="appartmentList">
+                        <select  name='appApartmenid' id="appartmentList">
                             <!--<option value="团委宣传部">团委宣传部</option>-->
                             <!--<option value="团委宣传部">团委宣传部</option>-->
                             <!--<option value="团委宣传部">团委宣传部</option>-->
                             <!--<option value="团委宣传部">团委宣传部</option>-->
                         </select>
-
                     </div>
                     <br/>
 
                     <div class="row">
                         <label class="col-md-6">
                             姓名：
-                            <input value="li"/>
+                            <input name='appName' value="li"/>
                         </label>
                         <label class="col-md-6">
                             qq&nbsp;&nbsp;&nbsp;：
-                            <input value="827519353"/>
+                            <input name='appQq' value="827519353"/>
                         </label>
 
                     </div>
@@ -256,28 +255,28 @@
                     <div class="row">
                         <label class="col-md-6">
                             学号：
-                            <input value="20122333"/>
+                            <input name='appStunum' value="20122333"/>
                         </label>
                         <label class="col-md-6">
                             电话：
-                            <input value="12032323242"/>
+                            <input name='appTel' value="12032323242"/>
                         </label>
 
                     </div>
                     <div class="row">
                         <label class="col-md-6">
                             班级：
-                            <input value="信安1201"/>
+                            <input name="appClassname" value="信安1201"/>
                         </label>
                         <label class="col-md-6">
                             性别&nbsp;&nbsp;&nbsp;
                             <label>
-                                <input type="radio" name="sex" value="男" checked="checked"/>
+                                <input type="radio" name="appSex" value="男" checked="checked"/>
                                 男
                             </label>
 
                             <label>
-                                <input type="radio" name="sex" value="女"/>
+                                <input type="radio" name="appSex" value="女"/>
                                 女
                             </label>
                         </label>
@@ -286,7 +285,7 @@
                         <label style="float: left">
                             爱好：
                         </label>
-                        <textarea rows="4" style="width: 495px;resize: none;">
+                        <textarea name='appLike' rows="4" style="width: 495px;resize: none;">
                             开始书写
                         </textarea>
 
@@ -298,7 +297,7 @@
                         <label style="float: left">
                             特长：
                         </label>
-                        <textarea rows="4" style="width: 495px;resize: none;">
+                        <textarea name='appGood' rows="4" style="width: 495px;resize: none;">
                             开始书写
                         </textarea>
 
@@ -308,7 +307,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                    <button type="button" class="btn btn-primary">提交</button>
+                    <input type="submit" class="btn btn-primary" value="提交"/>
                 </div>
             </div>
         </div>

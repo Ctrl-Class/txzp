@@ -7,12 +7,25 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import ctrl.cs.txzp.dao.ApartmentMapper;
+import ctrl.cs.txzp.dao.UserMapper;
 import ctrl.cs.txzp.modal.Apartment;
+import ctrl.cs.txzp.selfmodal.ShowApartModal;
 import ctrl.cs.txzp.service.ApartmentService;
 
 @Service("/ApartmentService")
 public class ApartmentServiceImpl implements ApartmentService {
 	private ApartmentMapper apartmentMapper;
+
+	private UserMapper userMapper;
+
+	public UserMapper getUserMapper() {
+		return userMapper;
+	}
+
+	@Autowired
+	public void setUserMapper(UserMapper userMapper) {
+		this.userMapper = userMapper;
+	}
 
 	public ApartmentMapper getApartmentMapper() {
 		return apartmentMapper;
@@ -32,28 +45,45 @@ public class ApartmentServiceImpl implements ApartmentService {
 		try {
 			if (dependenceId == 0)
 				apartments = apartmentMapper.selectAllApartments();
-			else{
-				System.out.println("@ServiceAfter"+apartmentMapper.selectAllApartmentsByDependence(dependenceId).size());
-				apartments = apartmentMapper.selectAllApartmentsByDependence(dependenceId);
-				System.out.println("@ServiceAfter"+apartments.size());
+			else {
+				System.out.println("@ServiceAfter"
+						+ apartmentMapper.selectAllApartmentsByDependence(
+								dependenceId).size());
+				apartments = apartmentMapper
+						.selectAllApartmentsByDependence(dependenceId);
+				System.out.println("@ServiceAfter" + apartments.size());
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
 			apartments = null;
 		} finally {
-			
+
 			return apartments;
 		}
 	}
 
 	@Override
 	@SuppressWarnings("finally")
-	public Apartment selectApartmentById(Integer id) {
+	public ShowApartModal selectApartmentById(Integer id) {
 		// TODO Auto-generated method stub
-		Apartment apartment = null;
+		ShowApartModal apartment = new ShowApartModal();
 		try {
-			apartment = apartmentMapper.selectByPrimaryKey(id);
+			String name1="", name2="", name3="";
+			Apartment temp = apartmentMapper.selectByPrimaryKey(id);
+			if (temp.getApartManagerUserid() != null)
+				name1 = userMapper.selectByPrimaryKey(
+						temp.getApartManagerUserid()).getUsername();
+			if (temp.getApartManagerTwoUserid() != null)
+				name2 = userMapper.selectByPrimaryKey(
+						temp.getApartManagerTwoUserid()).getUsername();
+			if (temp.getApartManagerThreeUserid() != null)
+				name3 = userMapper.selectByPrimaryKey(
+						temp.getApartManagerThreeUserid()).getUsername();
+			apartment.setApartment(temp);
+			apartment.setName1(name1);
+			apartment.setName2(name2);
+			apartment.setName3(name3);
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();

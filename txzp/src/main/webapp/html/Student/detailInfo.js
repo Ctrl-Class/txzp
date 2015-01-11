@@ -11,29 +11,52 @@
 
 $(document).ready(function(){
 	
-  var initListData=function(){
-       //加载部门列表select
-       var appartmentListData = {
+	
+	 var initApartmentListData=function(){
+	       var appartmentListData = {
 
-           list: [
-               {id: 1, name: '组织部', age: 22, mail: 'anne@domain.com'},
-               {id: 2, name: 'Amelie', age: 24, mail: 'amelie@domain.com'},
-               {id: 3, name: 'Polly', age: 18, mail: 'polly@domain.com'},
-               {id: 4, name: 'Alice', age: 26, mail: 'alice@domain.com'},
-               {id: 5, name: 'Martha', age: 25, mail: 'martha@domain.com'}
-           ]
-       };
+	           list: [
+	               {id: 1, name: '组织部', age: 22, mail: 'anne@domain.com'},
+	               {id: 2, name: 'Amelie', age: 24, mail: 'amelie@domain.com'},
+	               {id: 3, name: 'Polly', age: 18, mail: 'polly@domain.com'},
+	               {id: 4, name: 'Alice', age: 26, mail: 'alice@domain.com'},
+	               {id: 5, name: 'Martha', age: 25, mail: 'martha@domain.com'}
+	           ]
+	       };
 
-       var appartmentTemplate= '{#foreach $T.list as record}' +
-           '<option value={$T.record.id}>{$T.record.name}</option>'+
-           '{#/for}';
-       //下拉框1
-       $('#appartmentList').setTemplate( appartmentTemplate);
-       $('#appartmentList').processTemplate(appartmentListData);
-       //下拉框2
-       $('#List2').setTemplate( appartmentTemplate);
-       $('#List2').processTemplate(appartmentListData);
-   }
+	       
+	       $.ajax({
+	   	    type : "get",
+	   	    contentType : "application/x-www-form-urlencoded;charset=UTF-8",
+	   	    url : '/txzp/apartmentController/getApartmentList.do',
+	   	    async : false,
+	   	    data:{dependenceId:0},
+	   	    dataType : 'json',
+	   	    success : function(msg) {
+	   	        if(msg.result ==true){
+	   	            appartmentListData.list= msg.apartmentList;
+	   	        }else{
+	   	            alert(msg.message);
+	   	        }
+	   	    },error: function(msg){
+	   	        alert("网络超时！");
+	   	    }
+	   	  });
+	       
+	       var appartmentTemplate= '{#foreach $T.list as record}' +
+	           '<option value={$T.record.apartId}>{$T.record.apartName}</option>'+
+	           '{#/for}';
+	       
+	       $('#appartmentList').setTemplate( appartmentTemplate);
+	       $('#appartmentList').processTemplate(appartmentListData);
+	       //下拉框2
+	       $('#List2').setTemplate( appartmentTemplate);
+	       $('#List2').processTemplate(appartmentListData);
+	   }
+	
+ 
+  
+  
      //得到url参数id
    var GetQueryString= function (name) {
          var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
@@ -63,13 +86,12 @@ $(document).ready(function(){
        url : '/txzp/apartmentController/getApartmentById.do',
        async : false,
        data : {
-          id:appartmentId
+    	   apartId:appartmentId
        },
        dataType : 'json',
        success : function(msg) {
            if(msg.result ==true){
-               alert("success");
-               data.detail=msg.apartmentList;
+                data.detail=msg.apartment;
              }else{
                alert(msg.message);
            }
@@ -79,12 +101,12 @@ $(document).ready(function(){
    });
          
          
-         $('#name').text(data.apartName);
-         $('#ministerBig').text(data.detail.ministerBig);//? 没有该字段
-         $('#ministerSmall').text(data.detail.ministerSmall);//?
-         $('#basicInfo').text(data.detail.apartInfo);
-         $('#requireInfo').text(data.detail.apartRequire);
-         $('#deadLine').text(data.detail.apartDeadline);
+         $('#name').text(data.detail.apartment.apartName);
+         $('#ministerBig').text(data.detail.name1);//? 没有该字段
+         $('#ministerSmall').text(data.detail.name2+data.detail.name3);//?
+         $('#basicInfo').text(data.detail.apartment.apartInfo);
+         $('#requireInfo').text(data.detail.apartment.apartRequire);
+         $('#deadLine').text(data.detail.apartment.apartDeadline);
 
 
 
@@ -93,18 +115,52 @@ $(document).ready(function(){
      //当前部门详细信息数据
      initData();
      //提交表单时动态拉去部门列表数据
-     initListData();
+     initApartmentListData();
 
      $("#applicationForm").bind("submit", function (e) {
          e.preventDefault();
          var formData=$(this).serializeJson();
          console.log(formData);
+         $.ajax({
+				type : "post",
+				contentType : "application/x-www-form-urlencoded;charset=UTF-8",
+				url : '/txzp/applicationController/insertApplicationInfo.do',
+				async : false,
+				data : formData,
+				dataType : 'json',
+				success : function(msg) {
+					if(msg.result ==true){						
+						alert("success");
+					}else{
+						alert(msg.message);
+					}
+				},error: function(msg){
+				    alert("网络超时！");
+				}
+			});
      });
 
     $("#applicationForm1").bind("submit", function (e) {
         e.preventDefault();
         var formData=$(this).serializeJson();
         console.log(formData);
+        $.ajax({
+			type : "post",
+			contentType : "application/x-www-form-urlencoded;charset=UTF-8",
+			url : '/txzp/applicationController/insertApplicationInfo.do',
+			async : false,
+			data : formData,
+			dataType : 'json',
+			success : function(msg) {
+				if(msg.result ==true){						
+					alert("success");
+				}else{
+					alert(msg.message);
+				}
+			},error: function(msg){
+			    alert("网络超时！");
+			}
+		});
     });
 
  });

@@ -1,4 +1,13 @@
-
+//序列化表单的插件
+(function ($) {
+    $.fn.serializeJson = function () {
+        var serializeObj = {};
+        $(this.serializeArray()).each(function () {
+            serializeObj[this.name] = this.value;
+        });
+        return serializeObj;
+    };
+})(jQuery);
 $(document).ready(function () {
     var loadData=function(){
         //数据
@@ -13,17 +22,33 @@ $(document).ready(function () {
                 {id: 6, names: '组织部', status: '通过',stuName:'1',stuNo:'1',stuClass:'1',stuTel:'1',stuqq:'',stuSex:'', stuLike:'6',stuGood:'6' },
             ]
         };
-        
-        
-        
+       $.ajax({
+      type : "post",
+      contentType : "application/x-www-form-urlencoded;charset=UTF-8",
+      url : '/txzp/applicationController/getApplicationByUserId.do',
+      async : false,
+      data:{userId:2},
+      dataType : 'json',
+      success : function(msg) {
+          if(msg.result ==true){
+              alert("success");
+              data.application =msg.applicationList; 
+          }else{
+              alert(msg.message);
+          }
+      },error: function(msg){
+          alert("网络超时！");
+      }
+    });
+     
         //模板
         var template = '{#foreach $T.application as record}' +
             '<tr　>'+
-            '<td class="col-sm-2">{$T.record.id}</td>' +
-            '<td class="col-sm-2">{$T.record.names}</td>' +
-            '<td class="col-sm-2">{$T.record.status}</td>'+
+            '<td class="col-sm-2">{$T.record.appId}</td>' +
+            '<td class="col-sm-2">{$T.record.apartName}</td>' +
+            '<td class="col-sm-2">{$T.record.appState}</td>'+
             '<td class="col-sm-2">' +
-            '<button type="button" id="{$T.record.id}"  class="btn btn-primary " data-toggle="modal" data-target="#myModal">'+
+            '<button type="button" id="{$T.record.appId}"  class="btn btn-primary " data-toggle="modal" data-target="#myModal">'+
             '查看详情'+
             '</button>'+
             '</td>'+
@@ -33,49 +58,103 @@ $(document).ready(function () {
         $('#application tbody').setTemplate(template);
         $('#application tbody').processTemplate(data);
         $("button").click(function(){
-            fillData(this.id-1);
+           
+            for(var i=0;i<data.application.length;i++)
+            	{
+            	if(data.application[i].appId==this.id)
+            	{
+            		 fillData(data.application[i]);
+            		 break;
+            	}
+             	}
+            
         });
 
-        var fillData= function (id) {
-            $('#appartmentName').text(data.application[id].names);
-            $('#status').text(data.application[id].status);
-            $('#stuName').text(data.application[id].stuName);
-            $('#stuqq').text(data.application[id].stuqq);
-            $('#stuNo').text(data.application[id].stuNo);
-            $('#stuTel').text(data.application[id].stuTel);
-            $('#stuClass').text(data.application[id].stuClass);
-            $('#stuSex').text(data.application[id].stuSex);
-            $('#stuLike').text(data.application[id].stuLike);
-            $('#stuGood').text(data.application[id].stuGood);
+          var fillData= function (application) {
+            $('#appartmentName').text( application.apartName);///??没有部门名称，只有部门id
+            $('#status').text( application.appState);
+            $('#stuName').text( application.appName);
+            $('#stuqq').text( application.appQq);
+            $('#stuNo').text( application.appStunum);
+            $('#stuTel').text( application.appTel);
+            $('#stuClass').text( application.appClassname);
+            $('#stuSex').text( application.appSex);
+            $('#stuLike').text( application.appLike);
+            $('#stuGood').text( application.appGood);
         }
     }
-    var initAppartmentList=function(){
-         //部门列表
+    
+    var initApartmentListData=function(){
+        var appartmentListData = {
 
-         var appartmentListData = {
+            list: [
+                {id: 1, name: '组织部', age: 22, mail: 'anne@domain.com'},
+                {id: 2, name: 'Amelie', age: 24, mail: 'amelie@domain.com'},
+                {id: 3, name: 'Polly', age: 18, mail: 'polly@domain.com'},
+                {id: 4, name: 'Alice', age: 26, mail: 'alice@domain.com'},
+                {id: 5, name: 'Martha', age: 25, mail: 'martha@domain.com'}
+            ]
+        };
 
-             list: [
-                 {id: 1, name: '组织部', age: 22, mail: 'anne@domain.com'},
-                 {id: 2, name: 'Amelie', age: 24, mail: 'amelie@domain.com'},
-                 {id: 3, name: 'Polly', age: 18, mail: 'polly@domain.com'},
-                 {id: 4, name: 'Alice', age: 26, mail: 'alice@domain.com'},
-                 {id: 5, name: 'Martha', age: 25, mail: 'martha@domain.com'}
-             ]
-         };
-
-         var appartmentTemplate= '{#foreach $T.list as record}' +
-             '<option value={$T.record.id}>{$T.record.name}</option>'+
-             '{#/for}';
-         $('#appartmentList').setTemplate( appartmentTemplate);
-         $('#appartmentList').processTemplate(appartmentListData);
-     }
-
-     //加载下拉框部门列表数据
-     initAppartmentList();
-     //加载申请表状态数据
+        
+        $.ajax({
+    	    type : "get",
+    	    contentType : "application/x-www-form-urlencoded;charset=UTF-8",
+    	    url : '/txzp/apartmentController/getApartmentList.do',
+    	    async : false,
+    	    data:{dependenceId:0},
+    	    dataType : 'json',
+    	    success : function(msg) {
+    	        if(msg.result ==true){
+    	            
+    	          appartmentListData.list= msg.apartmentList;
+    	        }else{
+    	            alert(msg.message);
+    	        }
+    	    },error: function(msg){
+    	        alert("网络超时！");
+    	    }
+    	  });
+        
+        var appartmentTemplate= '{#foreach $T.list as record}' +
+            '<option value={$T.record.apartId}>{$T.record.apartName}</option>'+
+            '{#/for}';
+        $('#appartmentList').setTemplate( appartmentTemplate);
+        $('#appartmentList').processTemplate(appartmentListData);
+    }
+   
+  //加载下拉框部门列表数据
+    
+    $("#submitApplication").click(function(){
+   	 
+    	initApartmentListData();
+    })
+       //加载申请表状态数据
      loadData();
+     //提交申请表单
+    $("#applicationForm").bind("submit", function (e) {
+          e.preventDefault();
+          var formData=$(this).serializeJson();
+            console.log(formData);
+            $.ajax({
+				type : "post",
+				contentType : "application/x-www-form-urlencoded;charset=UTF-8",
+				url : '/txzp/applicationController/insertApplicationInfo.do',
+				async : false,
+				data :{appApartmenid: "1",appClassname: "信安1201",appGood: "开始书写  ",appLike: "                            开始书写   ",appName: "li",appQq: "827519353",appSex: "男",appStunum: "20122333",appTel: "12032323242"} ,
+				dataType : 'json',
+				success : function(msg) {
+					if(msg.result ==true){						
+						alert("success");
+					}else{
+						alert(msg.message);
+					}
+				},error: function(msg){
+				    alert("网络超时！");
+				}
+			});
+  });
 });
-
 //$.ajax({
 //    type : "post",
 //    contentType : "application/x-www-form-urlencoded;charset=UTF-8",

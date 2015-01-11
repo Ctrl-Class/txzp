@@ -3,15 +3,16 @@ package ctrl.cs.txzp.service;
 import java.util.ArrayList;
 
 import ctrl.cs.txzp.modal.Application;
+import ctrl.cs.txzp.selfmodal.ShowAppModal;
 
 public interface ApplicationService {
-	public ArrayList<Application> selectAllApplications(Integer dependenceId);
+	public ArrayList<ShowAppModal> selectAllApplications(Integer dependenceId);
 	
-	public ArrayList<Application> selectaApplicationsByApartmentId(Integer apartid);
+	public ArrayList<ShowAppModal> selectaApplicationsByApartmentId(Integer apartid);
 	
-	public ArrayList<Application> selectSelfApplications(Integer userid);
+	public ArrayList<ShowAppModal> selectSelfApplications(Integer userid);
 	
-	public Application selectaApplicationById(Integer id);
+	public ShowAppModal selectaApplicationById(Integer id);
 	
 	public boolean insertApplication(Application application);
 	

@@ -10,6 +10,10 @@ public class Apartment {
     private String apartRequire;
 
     private Integer apartManagerUserid;
+    
+    private Integer apartManagerTwoUserid;
+    
+    private Integer apartManagerThreeUserid;
 
     private Date apartDeadline;
 
@@ -71,5 +75,21 @@ public class Apartment {
 
 	public void setApartDependence(Integer apartDependence) {
 		this.apartDependence = apartDependence;
+	}
+
+	public Integer getApartManagerTwoUserid() {
+		return apartManagerTwoUserid;
+	}
+
+	public void setApartManagerTwoUserid(Integer apartManagerTwoUserid) {
+		this.apartManagerTwoUserid = apartManagerTwoUserid;
+	}
+
+	public Integer getApartManagerThreeUserid() {
+		return apartManagerThreeUserid;
+	}
+
+	public void setApartManagerThreeUserid(Integer apartManagerThreeUserid) {
+		this.apartManagerThreeUserid = apartManagerThreeUserid;
 	}
 }

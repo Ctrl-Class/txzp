@@ -49,7 +49,7 @@ $(document).ready(function () {
     	    dataType : 'json',
     	    success : function(msg) {
     	        if(msg.result ==true){
-    	            alert("success");
+    	            
     	            studentUniondata.table= msg.apartmentList;
     	        }else{
     	            alert(msg.message);
@@ -68,7 +68,7 @@ $(document).ready(function () {
     	    dataType : 'json',
     	    success : function(msg) {
     	        if(msg.result ==true){
-    	            alert("success");
+    	            
     	            youthLeagueCommitteedata.table= msg.apartmentList;
     	        }else{
     	            alert(msg.message);
@@ -125,7 +125,7 @@ $(document).ready(function () {
    	    dataType : 'json',
    	    success : function(msg) {
    	        if(msg.result ==true){
-   	            alert("success");
+   	            
    	          appartmentListData.list= msg.apartmentList;
    	        }else{
    	            alert(msg.message);
@@ -156,7 +156,44 @@ $(document).ready(function () {
           e.preventDefault();
           var formData=$(this).serializeJson();
             console.log(formData);
-    });
+            $.ajax({
+				type : "post",
+				contentType : "application/x-www-form-urlencoded;charset=UTF-8",
+				url : '/txzp/applicationController/insertApplicationInfo.do',
+				async : false,
+				data : formData,
+				dataType : 'json',
+				success : function(msg) {
+					if(msg.result ==true){						
+						alert("success");
+					}else{
+						alert(msg.message);
+					}
+				},error: function(msg){
+				    alert("网络超时！");
+				}
+			});
+//            $.ajax({
+//           	    type : "post",
+//           	    contentType : "application/x-www-form-urlencoded;charset=UTF-8",
+//           	    url : '/txzp/applicationController/getApplicationByInsert.do',
+//           	    async : false,
+//           	    data:{appApartmenid: "1",appClassname: "信安1201",appGood: "123   ",appLike: "123",appName: "li",appQq: "827519353",appSex: "男",appStunum: "20122333",appTel: "12032323242"},
+//           	    dataType : 'json',
+//           	    success : function(msg) {
+//           	        if(msg.result ==true){
+//           	            alert("success");
+//           	        }else{
+//           	            alert(msg.message);
+//           	        }
+//           	    },error: function(msg){
+//           	        alert("网络超时！");
+//           	    }
+//            
+//    });
+            
+            
+});
 });
 
  

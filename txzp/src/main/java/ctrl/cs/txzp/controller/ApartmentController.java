@@ -17,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.json.MappingJacksonJsonView;
 
 import ctrl.cs.txzp.modal.Apartment;
+import ctrl.cs.txzp.selfmodal.ShowApartModal;
 import ctrl.cs.txzp.service.ApartmentService;
 
 @Controller
@@ -72,7 +73,8 @@ public class ApartmentController {
         Map map = new HashMap();
         //HttpSession session = request.getSession();
         try {
-			Apartment apartment = apartmentService.selectApartmentById(apartId);
+        	System.out.println("@apaartController"+apartId);
+			ShowApartModal apartment = apartmentService.selectApartmentById(apartId);
 			if(apartment!=null){
 				map.put("apartment", apartment);
 				

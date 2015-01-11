@@ -77,8 +77,11 @@ $(document).ready(function(){
 					    alert("网络超时！");
 					}
 				});
+				
 		}
 	});
+	
+	
 	  
 });
 

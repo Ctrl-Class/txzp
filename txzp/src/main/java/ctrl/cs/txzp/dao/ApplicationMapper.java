@@ -3,6 +3,7 @@ package ctrl.cs.txzp.dao;
 import java.util.ArrayList;
 
 import ctrl.cs.txzp.modal.Application;
+import ctrl.cs.txzp.selfmodal.ShowAppModal;
 
 public interface ApplicationMapper {
     int deleteByPrimaryKey(Integer appId);
@@ -11,17 +12,17 @@ public interface ApplicationMapper {
 
     int insertSelective(Application record);
 
-    Application selectByPrimaryKey(Integer appId);
+    ShowAppModal selectByPrimaryKey(Integer appId);
 
     int updateByPrimaryKeySelective(Application record);
 
     int updateByPrimaryKey(Application record);
     
-    ArrayList<Application> selectAllApplications();
+    ArrayList<ShowAppModal> selectAllApplications();
     
-    ArrayList<Application> selectApplicationsByDependence(Integer dependenceId);
+    ArrayList<ShowAppModal> selectApplicationsByDependence(Integer dependenceId);
     
-    ArrayList<Application> selectApplicationsByUserId(Integer userId);
+    ArrayList<ShowAppModal> selectApplicationsByUserId(Integer userId);
     
-    ArrayList<Application> selectApplicationsByApartmentId(Integer apartId);
+    ArrayList<ShowAppModal> selectApplicationsByApartmentId(Integer apartId);
 }

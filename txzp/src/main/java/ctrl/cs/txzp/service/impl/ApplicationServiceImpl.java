@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import ctrl.cs.txzp.dao.ApplicationMapper;
 import ctrl.cs.txzp.modal.Application;
+import ctrl.cs.txzp.selfmodal.ShowAppModal;
 import ctrl.cs.txzp.service.ApplicationService;
 @Service("/ApplicationService")
 public class ApplicationServiceImpl implements ApplicationService {
@@ -23,9 +24,9 @@ public class ApplicationServiceImpl implements ApplicationService {
 
 	@SuppressWarnings("finally")
 	@Override
-	public ArrayList<Application> selectAllApplications(Integer dependenceId) {
+	public ArrayList<ShowAppModal> selectAllApplications(Integer dependenceId) {
 		// TODO Auto-generated method stub
-		ArrayList<Application> applications = new ArrayList<Application>();
+		ArrayList<ShowAppModal> applications = new ArrayList<ShowAppModal>();
 		try {
 			if(dependenceId == 0)
 				applications = applicationMapper.selectAllApplications();
@@ -43,9 +44,9 @@ public class ApplicationServiceImpl implements ApplicationService {
 
 	@SuppressWarnings("finally")
 	@Override
-	public ArrayList<Application> selectaApplicationsByApartmentId(Integer apartid) {
+	public ArrayList<ShowAppModal> selectaApplicationsByApartmentId(Integer apartid) {
 		// TODO Auto-generated method stub
-		ArrayList<Application> applications = new ArrayList<Application>();
+		ArrayList<ShowAppModal> applications = new ArrayList<ShowAppModal>();
 		try {
 			applications = applicationMapper.selectApplicationsByApartmentId(apartid);
 		} catch (Exception e) {
@@ -59,9 +60,9 @@ public class ApplicationServiceImpl implements ApplicationService {
 
 	@SuppressWarnings("finally")
 	@Override
-	public ArrayList<Application> selectSelfApplications(Integer userid) {
+	public ArrayList<ShowAppModal> selectSelfApplications(Integer userid) {
 		// TODO Auto-generated method stub
-		ArrayList<Application> applications = new ArrayList<Application>();
+		ArrayList<ShowAppModal> applications = new ArrayList<ShowAppModal>();
 		try {
 			applications = applicationMapper.selectApplicationsByUserId(userid);
 		} catch (Exception e) {
@@ -75,9 +76,9 @@ public class ApplicationServiceImpl implements ApplicationService {
 
 	@SuppressWarnings("finally")
 	@Override
-	public Application selectaApplicationById(Integer id) {
+	public ShowAppModal selectaApplicationById(Integer id) {
 		// TODO Auto-generated method stub
-		Application application = null;
+		ShowAppModal application = null;
 		try {
 			application = applicationMapper.selectByPrimaryKey(id);
 		} catch (Exception e) {
@@ -93,6 +94,7 @@ public class ApplicationServiceImpl implements ApplicationService {
 	public boolean insertApplication(Application application) {
 		// TODO Auto-generated method stub
 		boolean flag = true;
+		System.out.println("insert!");
 		try {
 			applicationMapper.insert(application);
 		} catch (Exception e) {

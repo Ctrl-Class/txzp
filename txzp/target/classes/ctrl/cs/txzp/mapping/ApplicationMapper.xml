@@ -15,16 +15,38 @@
     <result column="app_sex" property="appSex" jdbcType="VARCHAR" />
     <result column="app_good" property="appGood" jdbcType="VARCHAR" />
     <result column="app_like" property="appLike" jdbcType="VARCHAR" />
+    
+  </resultMap>
+  <resultMap id="ShowAppInfoMap" type="ctrl.cs.txzp.selfmodal.ShowAppModal" >
+    <id column="app_id" property="appId" jdbcType="INTEGER" />
+    <result column="app_userid" property="appUserid" jdbcType="INTEGER" />
+    <result column="app_name" property="appName" jdbcType="VARCHAR" />
+    <result column="app_tel" property="appTel" jdbcType="VARCHAR" />
+    <result column="app_QQ" property="appQq" jdbcType="VARCHAR" />
+    <result column="app_stunum" property="appStunum" jdbcType="INTEGER" />
+    <result column="app_apartmenid" property="appApartmenid" jdbcType="INTEGER" />
+    <result column="app_time" property="appTime" jdbcType="DATE" />
+    <result column="app_state" property="appState" jdbcType="INTEGER" />
+    <result column="app_className" property="appClassname" jdbcType="VARCHAR" />
+    <result column="app_sex" property="appSex" jdbcType="VARCHAR" />
+    <result column="app_good" property="appGood" jdbcType="VARCHAR" />
+    <result column="app_like" property="appLike" jdbcType="VARCHAR" />
+    <result column="apart_name" property="apartName" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
     app_id, app_userid, app_name, app_tel, app_QQ, app_stunum, app_apartmenid, app_time, 
     app_state, app_className, app_sex, app_good, app_like
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  <sql id="Show_Column_List" >
+    app_id, app_userid, app_name, app_tel, app_QQ, app_stunum, app_apartmenid, app_time, 
+    app_state, app_className, app_sex, app_good, app_like,apartment.apart_name
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ShowAppInfoMap" parameterType="java.lang.Integer" >
     select 
-    <include refid="Base_Column_List" />
-    from application
+    <include refid="Show_Column_List" />
+    from application,apartment
     where app_id = #{appId,jdbcType=INTEGER}
+    and apartment.apart_id = app_apartmenid
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from application
@@ -186,31 +208,34 @@
     where app_id = #{appId,jdbcType=INTEGER}
   </update>
   <!-- zxr 自定义 -->
-  <select id="selectAllApplications" resultMap="BaseResultMap" >
+  <select id="selectAllApplications" resultMap="ShowAppInfoMap" >
     select 
-    <include refid="Base_Column_List" />
-    from application
+    <include refid="Show_Column_List" />
+    from application,apartment
+    where apartment.apart_id = app_apartmenid
   </select>
   
-  <select id="selectApplicationsByDependence" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+  <select id="selectApplicationsByDependence" resultMap="ShowAppInfoMap" parameterType="java.lang.Integer">
     select 
-    <include refid="Base_Column_List" />
+    <include refid="Show_Column_List" />
     from application,apartment
     where application.app_apartmenid = apartment.apart_id
 	and apartment.apart_dependence = #{dependenceId,jdbyType=INTEGER}
   </select>
   
-  <select id="selectApplicationsByUserId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+  <select id="selectApplicationsByUserId" resultMap="ShowAppInfoMap" parameterType="java.lang.Integer">
     select 
-    <include refid="Base_Column_List" />
-    from application
+    <include refid="Show_Column_List" />
+    from application,apartment
     where app_userid = #{userId,jdbcType=INTEGER}
+    and apartment.apart_id = app_apartmenid
   </select>
   
-  <select id="selectApplicationsByApartmentId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+  <select id="selectApplicationsByApartmentId" resultMap="ShowAppInfoMap" parameterType="java.lang.Integer">
     select 
-    <include refid="Base_Column_List" />
-    from application
+    <include refid="Show_Column_List" />
+    from application,apartment
     where app_apartmenid = #{apartId,jdbcType=INTEGER}
+    and apartment.apart_id = app_apartmenid
   </select>
 </mapper>
