@@ -15,7 +15,7 @@ public class Apartment {
     
     private Integer apartManagerThreeUserid;
 
-    private Date apartDeadline;
+    private String apartDeadline;
 
     private String apartInfo;
     
@@ -53,13 +53,7 @@ public class Apartment {
         this.apartManagerUserid = apartManagerUserid;
     }
 
-    public Date getApartDeadline() {
-        return apartDeadline;
-    }
 
-    public void setApartDeadline(Date apartDeadline) {
-        this.apartDeadline = apartDeadline;
-    }
 
     public String getApartInfo() {
         return apartInfo;
@@ -91,5 +85,13 @@ public class Apartment {
 
 	public void setApartManagerThreeUserid(Integer apartManagerThreeUserid) {
 		this.apartManagerThreeUserid = apartManagerThreeUserid;
+	}
+
+	public String getApartDeadline() {
+		return apartDeadline;
+	}
+
+	public void setApartDeadline(String apartDeadline) {
+		this.apartDeadline = apartDeadline;
 	}
 }

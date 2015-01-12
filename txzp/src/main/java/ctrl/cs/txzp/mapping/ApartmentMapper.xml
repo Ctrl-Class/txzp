@@ -8,7 +8,7 @@
     <result column="apart_manager_userid" property="apartManagerUserid" jdbcType="INTEGER" />
     <result column="apart_managertwo_userid" property="apartManagerTwoUserid" jdbcType="INTEGER" />
     <result column="apart_managerthree_userid" property="apartManagerThreeUserid" jdbcType="INTEGER" />
-    <result column="apart_deadline" property="apartDeadline" jdbcType="DATE" />
+    <result column="apart_deadline" property="apartDeadline" jdbcType="VARCHAR" />
     <result column="apart_dependence" property="apartDependence" jdbcType="INTEGER" />
     <result column="apart_info" property="apartInfo" jdbcType="LONGVARCHAR" />
   </resultMap>
@@ -36,7 +36,7 @@
       apart_manager_userid,apart_managertwo_userid,apart_managerthree_userid, apart_deadline, apart_info,apart_dependence
       )
     values (#{apartId,jdbcType=INTEGER}, #{apartName,jdbcType=VARCHAR}, #{apartRequire,jdbcType=VARCHAR}, 
-      #{apartManagerUserid,jdbcType=INTEGER},#{apartManagerTwoUserid,jdbcType=INTEGER}, #{apartManagerThreeUserid,jdbcType=INTEGER},#{apartDeadline,jdbcType=DATE}, #{apartInfo,jdbcType=LONGVARCHAR},#{apartDependence,jdbcType=INTEGER}
+      #{apartManagerUserid,jdbcType=INTEGER},#{apartManagerTwoUserid,jdbcType=INTEGER}, #{apartManagerThreeUserid,jdbcType=INTEGER},#{apartDeadline,jdbcType=VARCHAR}, #{apartInfo,jdbcType=LONGVARCHAR},#{apartDependence,jdbcType=INTEGER}
       )
   </insert>
   <insert id="insertSelective" parameterType="ctrl.cs.txzp.modal.Apartment" >
@@ -90,7 +90,7 @@
         #{apartManagerThreeUserid,jdbcType=INTEGER},
       </if>
       <if test="apartDeadline != null" >
-        #{apartDeadline,jdbcType=DATE},
+        #{apartDeadline,jdbcType=VARCHAR},
       </if>
       <if test="apartInfo != null" >
         #{apartInfo,jdbcType=LONGVARCHAR},
@@ -119,7 +119,7 @@
         apart_managerthree_userid = #{apartManagerThreeUserid,jdbcType=INTEGER},
       </if>
       <if test="apartDeadline != null" >
-        apart_deadline = #{apartDeadline,jdbcType=DATE},
+        apart_deadline = #{apartDeadline,jdbcType=VARCHAR},
       </if>
       <if test="apartInfo != null" >
         apart_info = #{apartInfo,jdbcType=LONGVARCHAR},
@@ -137,7 +137,7 @@
       apart_manager_userid = #{apartManagerUserid,jdbcType=INTEGER},
       apart_managertwo_userid = #{apartManagerTwoUserid,jdbcType=INTEGER},
       apart_managerthree_userid = #{apartManagerThreeUserid,jdbcType=INTEGER},
-      apart_deadline = #{apartDeadline,jdbcType=DATE},
+      apart_deadline = #{apartDeadline,jdbcType=VARCHAR},
       apart_info = #{apartInfo,jdbcType=LONGVARCHAR},
       apart_dependence = #{apartDependence,jdbcType=INTEGER}
     where apart_id = #{apartId,jdbcType=INTEGER}
@@ -147,7 +147,7 @@
     set apart_name = #{apartName,jdbcType=VARCHAR},
       apart_require = #{apartRequire,jdbcType=VARCHAR},
       apart_manager_userid = #{apartManagerUserid,jdbcType=INTEGER},
-      apart_deadline = #{apartDeadline,jdbcType=DATE}
+      apart_deadline = #{apartDeadline,jdbcType=VARCHAR}
     where apart_id = #{apartId,jdbcType=INTEGER}
   </update>
   <!-- zxr 自定义 -->

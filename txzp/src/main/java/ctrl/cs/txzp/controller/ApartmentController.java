@@ -96,7 +96,7 @@ public class ApartmentController {
 	
 	@SuppressWarnings({ "rawtypes", "unchecked", "finally" })
     @RequestMapping("/updateApartmentInfo")
-    public ModelAndView updateApartmentInfo(Integer apartId,String apartName,String apartRequire, Integer apartManagerUserid,Date apartDeadline,
+    public ModelAndView updateApartmentInfo(Integer apartId,String apartName,String apartRequire, Integer apartManagerUserid,String apartDeadline,
     		String apartInfo,Integer apartDependence,HttpServletResponse response, HttpServletRequest request) {
         ModelAndView mav = new ModelAndView();
         MappingJacksonJsonView view = new MappingJacksonJsonView();
@@ -131,7 +131,7 @@ public class ApartmentController {
 	
 	@SuppressWarnings({ "rawtypes", "unchecked", "finally" })
     @RequestMapping("/insertApartmentInfo")
-    public ModelAndView insertApartmentInfo(String apartName,String apartRequire, Integer apartManagerUserid,Date apartDeadline,
+    public ModelAndView insertApartmentInfo(String apartName,String apartRequire, Integer apartManagerUserid,String apartDeadline,
     		Integer apartManagerTwoUserid,Integer apartManagerThreeUserid,
     		String apartInfo,Integer apartDependence,HttpServletResponse response, HttpServletRequest request) {
         ModelAndView mav = new ModelAndView();
