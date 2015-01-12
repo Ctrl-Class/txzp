@@ -83,7 +83,7 @@
       <if test="apartManagerUserid != null" >
         #{apartManagerUserid,jdbcType=INTEGER},
       </if>
-      ]<if test="apartManagerTwoUserid != null" >
+      <if test="apartManagerTwoUserid != null" >
         #{apartManagerTwoUserid,jdbcType=INTEGER},
       </if>
       <if test="apartManagerThreeUserid != null" >
