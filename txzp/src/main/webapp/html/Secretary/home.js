@@ -77,8 +77,8 @@ $(document).ready(function () {
             '<td class="col-md-4">{$T.record.apartName}</td >'+
             '<td class="col-md-2">'+
             ' <input num="{$T.record.apartId}"  type="button" name="deleteBtn" class="btn btn-primary" value="删除"> '+
-             '<input num="{$T.record.apartId}" type="button"  name="editBtn" class="btn btn-primary" data-toggle="modal" data-target="#myModal2" value="编辑"> '+
-            '</td>'+
+            '<a href="editAppartInfo.html?id={$T.record.apartId}"  class="btn btn-primary" role="button">编辑</a>'+
+             '</td>'+
             '</tr>'+
             '{#/for}';
 
@@ -100,20 +100,19 @@ $(document).ready(function () {
     //添加部门
     $("#submit").click(function(){
 
-        var apartName= $("#editappartName").text();
+        var apartName= $("#editappartName").val();
         var  apartInfo= $("#editbasicInfoInput").val();
         var  apartRequire= $("#editrequireInfoInput").val();
         var  apartDeadline= $("#editdeadLineInput").val();
-        //???
-        if(appartmentName!=''&&ministerBigName!=''&&appartAccounts!=''&&appartpassword!='')
-        {
-            //ajax提交
+        var apartDependence=$("input[name='appdepend'][checked]").val();
+       if(apartName!=null&&apartInfo!=null&&apartRequire!=null&&apartDependence!=null)
+          {  //ajax提交
         	$.ajax({
         	    type : "get",
         	    contentType : "application/x-www-form-urlencoded;charset=UTF-8",
         	    url : '/txzp/apartmentController/insertApartmentInfo.do',
         	    async : false,
-        	    data:{apartName:apartName,apartRequire:apartRequire,apartManagerUserid:apartManagerUserid,apartDeadline:apartDeadline,apartInfo:apartInfo},//??用户设置 此时只有一个userid
+        	    data:{apartName:apartName,apartRequire:apartRequire, apartDeadline:apartDeadline,apartInfo:apartInfo,apartDependence:apartDependence},//??用户设置 此时只有一个userid
         	    dataType : 'json',
         	    success : function(msg) {
         	        if(msg.result ==true){
@@ -126,48 +125,13 @@ $(document).ready(function () {
         	        alert("网络超时！");
         	    }
         	  });
-        }
-
+         
+          }
     })
 
-    //编辑部门
-    $("input[name='editBtn']").each(function(){
-
-         $(this).click(function () {
-
-             var id=$(this).attr("num");
-             //编辑该id 部门
-            $("#editSubmmit").click(function(){
-
-                var  AppartNames= $("#editAppartName").val();
-                var  apartInfo= $("#basicInfoInput").val();
-                var  apartRequire= $("#requireInfoInput").val();
-                var  apartDeadline= $("#deadLineInput").val();
-              
-                $.ajax({
-            	    type : "post",
-            	    contentType : "application/x-www-form-urlencoded;charset=UTF-8",
-            	    url : '/txzp/apartmentController/updateApartmentInfo.do',
-            	    async : false,
-            	    data:{apartId:id,apartName:AppartNames,apartRequire:apartRequire,apartManagerUserid,apartDeadline:apartDeadline,apartInfo:apartInfo}, //用户id设置
-            	    dataType : 'json',
-            	    success : function(msg) {
-            	        if(msg.result ==true){
-            	            alert("success");
-            	           
-            	        }else{
-            	            alert(msg.message);
-            	        }
-            	    },error: function(msg){
-            	        alert("网络超时！");
-            	    }
-            	  });
-                
-
-            })
-        })
-
-    })
+    
+    
+    
 
     //删除部门
 

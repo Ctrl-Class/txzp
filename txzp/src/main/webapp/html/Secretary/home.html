@@ -6,6 +6,7 @@
     <!--bootstrap引入-->
     <link href="../../css/bootstrap.css" rel="stylesheet" type="text/css"/>
     <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+    <script src="../../js/My97DatePicker/WdatePicker.js"></script>
     <script src="../../js/tab.js"></script>
     <script src="../../js/templates.js"></script>
     <script src="home.js"></script>
@@ -117,11 +118,26 @@
                     <h4 class="modal-title" id="myModalLabel">添加部门</h4>
                 </div>
                 <div class="modal-body">
-                    <div>
-                        <label style="float: left">
+                    <div class="row" >
+                        <label class="col-md-6" >
                             部门名称：
+                          </label>
+                        <input id="editappartName" type="text" class="form-control">
+                        
+                        
+                         <label class="col-md-6">
+                          类别&nbsp;&nbsp;&nbsp;
+                            <label>
+                                <input type="radio" name="appdepend" value="2" checked="checked"/>
+                               学生会
+                            </label>
+
+                            <label>
+                                <input type="radio" name="appdepend" value="1"/>
+                               团委
+                            </label>
                         </label>
-                        <input id="appartName" type="text" class="form-control">
+                        
                     </div>
                     <br/>
                     <br/>
@@ -129,7 +145,7 @@
                         <label style="float: left">
                             基本介绍：
                         </label>
-                        <textarea id='basicInfoInput' rows="4" style="width: 495px;resize: none;">
+                        <textarea id='editbasicInfoInput' rows="4" style="width: 495px;resize: none;">
                            
                         </textarea>
 
@@ -141,7 +157,7 @@
                         <label style="float: left">
                             招聘要求：
                         </label>
-                        <textarea id='requireInfoInput' rows="4" style="width: 495px;resize: none;">
+                        <textarea id='editrequireInfoInput' rows="4" style="width: 495px;resize: none;">
                             
                         </textarea>
 
@@ -152,7 +168,7 @@
                     <div class="row">
                         <label class="col-md-12">
                             申请截止日期：
-                            <input id="deadLineInput" value="2012.12.12"/>
+                            <input id="editdeadLineInput" onclick="WdatePicker()"/>
                         </label>
                     </div>
                     
@@ -211,7 +227,7 @@
                     <div class="row">
                         <label class="col-md-12">
                             申请截止日期：
-                            <input id="deadLineInput" value="2012.12.12"/>
+                            <input id="deadLineInput"  onclick="WdatePicker()"/>
                         </label>
                     </div>
 
