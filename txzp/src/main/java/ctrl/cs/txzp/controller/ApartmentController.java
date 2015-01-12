@@ -140,7 +140,6 @@ public class ApartmentController {
         //HttpSession session = request.getSession();
         try {
 			Apartment apartment = new Apartment();
-			
 			apartment.setApartName(apartName);
 			if(apartRequire != null || apartRequire !="")
 				apartment.setApartRequire(apartRequire);

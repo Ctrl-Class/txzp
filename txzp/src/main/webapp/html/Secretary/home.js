@@ -108,7 +108,7 @@ $(document).ready(function () {
        if(apartName!=null&&apartInfo!=null&&apartRequire!=null&&apartDependence!=null)
           {  //ajax提交
         	$.ajax({
-        	    type : "get",
+        	    type : "post",
         	    contentType : "application/x-www-form-urlencoded;charset=UTF-8",
         	    url : '/txzp/apartmentController/insertApartmentInfo.do',
         	    async : false,
