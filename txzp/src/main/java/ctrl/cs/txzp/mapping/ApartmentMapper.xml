@@ -166,4 +166,13 @@
     <include refid="Blob_Column_List" />
     from apartment
   </select>
+  <select id="selectAllApartments" resultMap="BaseResultMap" parameterType="ctrl.cs.txzp.modal.Apartment">
+  	select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from apartment
+    where apart_name = #{apartName,jdbcType=VARCHAR},
+    and apart_dependence = #{apartDependence,jdbcType=INTEGER}
+  </select>
 </mapper>

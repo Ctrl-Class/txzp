@@ -159,7 +159,7 @@ public class ApartmentController {
 				map.put("message", "添加成功！");
 			}else {
 				map.put("result", Boolean.FALSE);
-				map.put("message", "添加失败！");
+				map.put("message", "已有该部门，请勿重复添加！");
 			}
 		} catch (Exception e) {
 			// TODO: handle exception

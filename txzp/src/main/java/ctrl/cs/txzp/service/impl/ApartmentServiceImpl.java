@@ -97,8 +97,15 @@ public class ApartmentServiceImpl implements ApartmentService {
 	public boolean insertApartment(Apartment apartment) {
 		// TODO Auto-generated method stub
 		boolean flag = true;
+		Apartment temp = new Apartment();
 		try {
-			apartmentMapper.insertSelective(apartment);
+			temp.setApartName(apartment.getApartName());
+			temp.setApartDependence(apartment.getApartDependence());
+			if(apartmentMapper.checkApartments(temp).size() <= 0)
+				apartmentMapper.insertSelective(apartment);
+			else{
+				flag = false;
+			}
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
@@ -129,7 +136,9 @@ public class ApartmentServiceImpl implements ApartmentService {
 	public boolean deleteApartmentById(Integer id) {
 		// TODO Auto-generated method stub
 		boolean flag = true;
+		
 		try {
+			
 			apartmentMapper.deleteByPrimaryKey(id);
 		} catch (Exception e) {
 			// TODO: handle exception

@@ -23,4 +23,6 @@ public interface ApartmentMapper {
     ArrayList<Apartment> selectAllApartmentsByDependence(Integer dependenceId);
     
     ArrayList<Apartment> selectAllApartments();
+    
+    ArrayList<Apartment> checkApartments(Apartment record);
 }
