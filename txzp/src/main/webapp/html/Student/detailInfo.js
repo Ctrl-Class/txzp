@@ -102,8 +102,8 @@ $(document).ready(function(){
          
          
          $('#name').text(data.detail.apartment.apartName);
-         $('#ministerBig').text(data.detail.name1);//? 没有该字段
-         $('#ministerSmall').text(data.detail.name2+data.detail.name3);//?
+         $('#ministerBig').text(data.detail.name1); 
+         $('#ministerSmall').text(data.detail.name2+data.detail.name3); 
          $('#basicInfo').text(data.detail.apartment.apartInfo);
          $('#requireInfo').text(data.detail.apartment.apartRequire);
          $('#deadLine').text(data.detail.apartment.apartDeadline);
