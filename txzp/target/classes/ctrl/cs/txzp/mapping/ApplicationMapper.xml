@@ -238,4 +238,9 @@
     where app_apartmenid = #{apartId,jdbcType=INTEGER}
     and apartment.apart_id = app_apartmenid
   </select>
+  
+  <delete id="deleteByApartId" parameterType="java.lang.Integer" >
+    delete from application
+    where app_apartmenid = #{apartId,jdbcType=INTEGER}
+  </delete>
 </mapper>

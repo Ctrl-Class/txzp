@@ -25,4 +25,6 @@ public interface ApplicationMapper {
     ArrayList<ShowAppModal> selectApplicationsByUserId(Integer userId);
     
     ArrayList<ShowAppModal> selectApplicationsByApartmentId(Integer apartId);
+    
+    int deleteByApartId(Integer apartId);
 }
