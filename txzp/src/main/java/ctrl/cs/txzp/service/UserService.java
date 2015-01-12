@@ -1,6 +1,9 @@
 package ctrl.cs.txzp.service;
 
+import java.util.ArrayList;
+
 import ctrl.cs.txzp.modal.User;
+import ctrl.cs.txzp.selfmodal.ShowUserModal;
 
 
 public interface UserService {
@@ -14,5 +17,5 @@ public interface UserService {
 	
 	public User findUserByUsername(String username);
 	
-		
+	public ArrayList<ShowUserModal> findUserByOption(ShowUserModal reword);
 }

@@ -1,10 +1,13 @@
 package ctrl.cs.txzp.service.impl;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import ctrl.cs.txzp.dao.UserMapper;
 import ctrl.cs.txzp.modal.User;
+import ctrl.cs.txzp.selfmodal.ShowUserModal;
 import ctrl.cs.txzp.service.UserService;
 @Service("/UserService")
 public class userServiceImpl implements UserService {
@@ -94,6 +97,20 @@ public class userServiceImpl implements UserService {
 			e.printStackTrace();
 		} finally {
 			return user;
+		}
+	}
+	
+	@Override
+	@SuppressWarnings("finally")
+	public ArrayList<ShowUserModal> findUserByOption(ShowUserModal reword){
+		ArrayList<ShowUserModal> showUserModals = new ArrayList<ShowUserModal>();
+		try {
+			showUserModals = userMaping.findUserByOption(reword);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}finally{
+			return showUserModals;
 		}
 	}
 	

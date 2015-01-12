@@ -1,5 +1,6 @@
 package ctrl.cs.txzp.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -14,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.json.MappingJacksonJsonView;
 
 import ctrl.cs.txzp.modal.User;
+import ctrl.cs.txzp.selfmodal.ShowUserModal;
 import ctrl.cs.txzp.service.UserService;
 
 @Controller
@@ -24,92 +26,123 @@ public class UserController {
 	public UserService getUserService() {
 		return userService;
 	}
+
 	@Autowired
 	public void setUserService(UserService userService) {
 		this.userService = userService;
 	}
-	
+
 	@SuppressWarnings({ "rawtypes", "unchecked", "finally" })
-    @RequestMapping("/loginUser")
-    public ModelAndView loginUser(String loginName,String passWord, HttpServletResponse response, HttpServletRequest request) {
-        ModelAndView mav = new ModelAndView();
-        MappingJacksonJsonView view = new MappingJacksonJsonView();
-        Map map = new HashMap();
-        HttpSession session = request.getSession();
-        try {
-        	User user = null;
-        	user = userService.checkUser(loginName, passWord);
-           if(user != null){
-        	   session.setAttribute("user", user);
-        	   map.put("user", user);
-        	   map.put("result", Boolean.TRUE);
-        	   map.put("message", "登录成功");
-           }else{
-        	   map.put("result", Boolean.FALSE);
-        	   map.put("message", "用户名或密码错误！");
-           }
-        } catch (Exception e) {
-            map.put("result", Boolean.FALSE);
-            map.put("message", "信息错误");
-            e.printStackTrace();
-        } finally {
-            view.setAttributesMap(map);
-            mav.setView(view);
-            return mav;
-        }
-    }
-	
-	
+	@RequestMapping("/loginUser")
+	public ModelAndView loginUser(String loginName, String passWord,
+			HttpServletResponse response, HttpServletRequest request) {
+		ModelAndView mav = new ModelAndView();
+		MappingJacksonJsonView view = new MappingJacksonJsonView();
+		Map map = new HashMap();
+		HttpSession session = request.getSession();
+		try {
+			User user = null;
+			user = userService.checkUser(loginName, passWord);
+			if (user != null) {
+				session.setAttribute("user", user);
+				map.put("user", user);
+				map.put("result", Boolean.TRUE);
+				map.put("message", "登录成功");
+			} else {
+				map.put("result", Boolean.FALSE);
+				map.put("message", "用户名或密码错误！");
+			}
+		} catch (Exception e) {
+			map.put("result", Boolean.FALSE);
+			map.put("message", "信息错误");
+			e.printStackTrace();
+		} finally {
+			view.setAttributesMap(map);
+			mav.setView(view);
+			return mav;
+		}
+	}
+
 	@SuppressWarnings({ "rawtypes", "unchecked", "finally" })
-    @RequestMapping("/findUserByName")
-    public ModelAndView findUserByName(String username, HttpServletResponse response, HttpServletRequest request) {
-        ModelAndView mav = new ModelAndView();
-        MappingJacksonJsonView view = new MappingJacksonJsonView();
-        Map map = new HashMap();
-        try {
-        	User user = null;
-        	user = userService.findUserByUsername(username);
-           if(user != null){
-        	   map.put("result", Boolean.FALSE);
-        	   map.put("message", "用户名已被注册");
-           }else{
-        	   map.put("result", Boolean.TRUE);
-        	   map.put("message", "用户名未被注册");
-           }
-        } catch (Exception e) {
-            map.put("result", Boolean.FALSE);
-            map.put("message", "信息错误");
-            e.printStackTrace();
-        } finally {
-            view.setAttributesMap(map);
-            mav.setView(view);
-            return mav;
-        }
-    }
-	
-	
+	@RequestMapping("/findUserByName")
+	public ModelAndView findUserByName(String username,
+			HttpServletResponse response, HttpServletRequest request) {
+		ModelAndView mav = new ModelAndView();
+		MappingJacksonJsonView view = new MappingJacksonJsonView();
+		Map map = new HashMap();
+		try {
+			User user = null;
+			user = userService.findUserByUsername(username);
+			if (user != null) {
+				map.put("result", Boolean.FALSE);
+				map.put("message", "用户名已被注册");
+			} else {
+				map.put("result", Boolean.TRUE);
+				map.put("message", "用户名未被注册");
+			}
+		} catch (Exception e) {
+			map.put("result", Boolean.FALSE);
+			map.put("message", "信息错误");
+			e.printStackTrace();
+		} finally {
+			view.setAttributesMap(map);
+			mav.setView(view);
+			return mav;
+		}
+	}
+
 	@SuppressWarnings({ "rawtypes", "unchecked", "finally" })
-    @RequestMapping("/createNewUser")
-    public ModelAndView createNewUser(String username,String password, HttpServletResponse response, HttpServletRequest request) {
-        ModelAndView mav = new ModelAndView();
-        MappingJacksonJsonView view = new MappingJacksonJsonView();
-        Map map = new HashMap();
-        try {
-        	
-        	if(userService.addUser(username, password, 1)){
-        		map.put("result", Boolean.TRUE);
-         	   map.put("message", "注册成功");
-        	}  
-        } catch (Exception e) {
-            map.put("result", Boolean.FALSE);
-            map.put("message", "系统繁忙，请稍后再试...");
-            e.printStackTrace();
-        } finally {
-            view.setAttributesMap(map);
-            mav.setView(view);
-            return mav;
-        }
-    }
-	
-	
+	@RequestMapping("/createNewUser")
+	public ModelAndView createNewUser(String username, String password,
+			HttpServletResponse response, HttpServletRequest request) {
+		ModelAndView mav = new ModelAndView();
+		MappingJacksonJsonView view = new MappingJacksonJsonView();
+		Map map = new HashMap();
+		try {
+
+			if (userService.addUser(username, password, 1)) {
+				map.put("result", Boolean.TRUE);
+				map.put("message", "注册成功");
+			}
+		} catch (Exception e) {
+			map.put("result", Boolean.FALSE);
+			map.put("message", "系统繁忙，请稍后再试...");
+			e.printStackTrace();
+		} finally {
+			view.setAttributesMap(map);
+			mav.setView(view);
+			return mav;
+		}
+	}
+
+	@SuppressWarnings({ "rawtypes", "unchecked", "finally" })
+	@RequestMapping("/findUserByOption")
+	public ModelAndView findUserByOption(String userName, String infoUserName,
+			HttpServletResponse response, HttpServletRequest request) {
+		ModelAndView mav = new ModelAndView();
+		MappingJacksonJsonView view = new MappingJacksonJsonView();
+		Map map = new HashMap();
+		// HttpSession session = request.getSession();
+		ArrayList<ShowUserModal> showUsers = new ArrayList<ShowUserModal>();
+		try {
+			ShowUserModal temp = new ShowUserModal();
+			if (userName != null || userName != "")
+				temp.setUsername(userName);
+			if (infoUserName != null || infoUserName != "")
+				temp.setInfoUsername(infoUserName);
+			showUsers = userService.findUserByOption(temp);
+			map.put("showUsers", showUsers);
+			map.put("result", Boolean.TRUE);
+			map.put("message", "查询成功");
+
+		} catch (Exception e) {
+			map.put("result", Boolean.FALSE);
+			map.put("message", "信息错误");
+			e.printStackTrace();
+		} finally {
+			view.setAttributesMap(map);
+			mav.setView(view);
+			return mav;
+		}
+	}
 }

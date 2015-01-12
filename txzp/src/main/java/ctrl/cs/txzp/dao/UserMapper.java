@@ -1,6 +1,9 @@
 package ctrl.cs.txzp.dao;
 
+import java.util.ArrayList;
+
 import ctrl.cs.txzp.modal.User;
+import ctrl.cs.txzp.selfmodal.ShowUserModal;
 
 public interface UserMapper {
     int deleteByPrimaryKey(Integer userid);
@@ -18,4 +21,6 @@ public interface UserMapper {
     User checkUser(User user);
     
     User findUserByUsername(String username);
+    
+    ArrayList<ShowUserModal> findUserByOption(ShowUserModal record);
 }

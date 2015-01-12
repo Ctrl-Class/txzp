@@ -8,8 +8,19 @@
     <result column="roleid" property="roleid" jdbcType="INTEGER" />
     <result column="userpartid" property="userpartid" jdbcType="INTEGER" />
   </resultMap>
+  <resultMap id="BaseResultMap" type="ctrl.cs.txzp.modal.User" >
+    <id column="userid" property="userid" jdbcType="INTEGER" />
+    <result column="username" property="username" jdbcType="VARCHAR" />
+    <result column="userpassword" property="userpassword" jdbcType="VARCHAR" />
+    <result column="roleid" property="roleid" jdbcType="INTEGER" />
+    <result column="userpartid" property="userpartid" jdbcType="INTEGER" />
+    <result column="info_username" property="infoUsername" jdbcType="VARCHAR" />
+  </resultMap>
   <sql id="Base_Column_List" >
     userid, username, userpassword, roleid, userpartid
+  </sql>
+  <sql id="Show_Column_List" >
+    userid, username, userpassword, roleid, userpartid,info_username
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -106,5 +117,14 @@
     <include refid="Base_Column_List" />
     from user
     where username = #{username,jdbcType=VARCHAR}
+  </select>
+   <!-- 赵学融    筛选时调用 -->
+  <select id="findUserByOption" resultMap="ctrl.cs.txzp.selfmodal.ShowUserModal" parameterType="ctrl.cs.txzp.selfmodal.ShowUserModal" >
+    select 
+    <include refid="Show_Column_List" />
+    from user,
+    where if(#{username,jdbcType=VARCHAR} is NULL,username = username,username = #{username,jdbcType=VARCHAR})
+	and if(#{infoUsername,jdbcType=VARCHAR} is null,userinfo.info_username = userinfo.info_username,userinfo.info_username = #{infoUsername,jdbcType=VARCHAR})
+	and userid = userinfo.info_userid    
   </select>
 </mapper>
