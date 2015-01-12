@@ -132,6 +132,7 @@ public class ApartmentController {
 	@SuppressWarnings({ "rawtypes", "unchecked", "finally" })
     @RequestMapping("/insertApartmentInfo")
     public ModelAndView insertApartmentInfo(String apartName,String apartRequire, Integer apartManagerUserid,Date apartDeadline,
+    		Integer apartManagerTwoUserid,Integer apartManagerThreeUserid,
     		String apartInfo,Integer apartDependence,HttpServletResponse response, HttpServletRequest request) {
         ModelAndView mav = new ModelAndView();
         MappingJacksonJsonView view = new MappingJacksonJsonView();
@@ -139,11 +140,20 @@ public class ApartmentController {
         //HttpSession session = request.getSession();
         try {
 			Apartment apartment = new Apartment();
+			
 			apartment.setApartName(apartName);
-			apartment.setApartRequire(apartRequire);
-			apartment.setApartManagerUserid(apartManagerUserid);
-			apartment.setApartDeadline(apartDeadline);
-			apartment.setApartInfo(apartInfo);
+			if(apartRequire != null || apartRequire !="")
+				apartment.setApartRequire(apartRequire);
+			if(apartManagerUserid != null)
+				apartment.setApartManagerUserid(apartManagerUserid);
+			if(apartManagerTwoUserid != null)
+				apartment.setApartManagerTwoUserid(apartManagerTwoUserid);
+			if(apartManagerThreeUserid != null)
+				apartment.setApartManagerThreeUserid(apartManagerThreeUserid);
+			if(apartDeadline != null)
+				apartment.setApartDeadline(apartDeadline);
+			if(apartInfo != null)
+				apartment.setApartInfo(apartInfo);
 			apartment.setApartDependence(apartDependence);
 			if(apartmentService.insertApartment(apartment)){
 				map.put("result", Boolean.TRUE);
